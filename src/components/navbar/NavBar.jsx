@@ -7,13 +7,11 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
-// import Switch from '@material-ui/core/Switch';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import avatar from '../../images/hl_avatar.jpg';
 import NavDrawer from './NavDrawer';
+import NavMenuItems from './NavMenuItems';
 
 const styles = {
   root: {
@@ -37,8 +35,7 @@ const styles = {
 class MenuAppBar extends React.Component {
   state = {
     anchorEl: null,
-    drawerOpen: false,
-    childRef: null
+    drawerOpen: false
   };
 
   // listen for clicking outside
@@ -71,10 +68,6 @@ class MenuAppBar extends React.Component {
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
-  constructor(props) {
-    super(props);
-    this.state.childRef = React.createRef();
-  }
   render() {
     const { classes } = this.props;
     const { anchorEl } = this.state;
@@ -102,6 +95,9 @@ class MenuAppBar extends React.Component {
             >
               Hyeran Lee
             </Typography>
+
+            <NavMenuItems />
+
             <div>
               <IconButton
                 aria-owns={open ? 'menu-appbar' : null}
