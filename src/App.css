@@ -1,0 +1,41 @@
+.App {}
+
+header {
+  /* height: 100%; */
+  text-align: center;
+}
+
+.App-header-background {
+  /* position: absolute; */
+  background-image: url('./images/art-1.jpg');
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  background-color: #222;
+  /* height: 150px; */
+  /* padding: 20px; */
+  color: white;
+  position: relative;
+}
+
+.App-title {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+
+.App-title h1 {
+  line-height: 100vh;
+  margin: 0;
+  font-size: 5.5em;
+  color: cornflowerblue;
+  text-align: center;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.nav-active NavBar {
+  opacity: 0.5;
+}
