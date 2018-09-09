@@ -12,10 +12,14 @@ import Menu from '@material-ui/core/Menu';
 import avatar from '../../images/hl_avatar.jpg';
 import NavDrawer from './NavDrawer';
 import NavMenuItems from './NavMenuItems';
+import Hidden from '@material-ui/core/Hidden';
+import withWidth from '@material-ui/core/withWidth';
+import compose from 'recompose/compose';
 
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    zIndex: 1
   },
   flex: {
     flexGrow: 1,
@@ -35,16 +39,38 @@ const styles = {
 class MenuAppBar extends React.Component {
   state = {
     anchorEl: null,
-    drawerOpen: false
+    drawerOpen: false,
+    nav: null,
+    topOfNav: null
   };
 
   // listen for clicking outside
   componentWillMount = () => {
     document.addEventListener('mousedown', this.handleClick, false);
+    window.addEventListener('scroll', this.fixNav);
   };
   componentWillUnount = () => {
     document.removeEventListener('mousedown', this.handleClick, false);
   };
+  componentDidMount = () => {
+    const nav = document.querySelector('#navbar');
+    this.setState({
+      nav: nav,
+      topOfNav: nav.offsetTop
+    });
+  };
+
+  fixNav = () => {
+    const { nav, topOfNav } = this.state;
+    if (window.scrollY >= topOfNav) {
+      document.body.style.paddingTop = nav.offsetHeight + 'px';
+      document.body.classList.add('fixed-nav');
+    } else {
+      document.body.style.paddingTop = 0;
+      document.body.classList.remove('fixed-nav');
+    }
+  };
+
   handleClick = e => {
     // if the click is outside, close the nav drawer
     Array.from(e.target.classList)
@@ -74,18 +100,19 @@ class MenuAppBar extends React.Component {
     const open = Boolean(anchorEl);
 
     return (
-      <div className={classes.root}>
+      <div className={classes.root} id="navbar">
         <AppBar position="static">
           <Toolbar>
-            <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-              onClick={this.toggleDrawer}
-            >
-              <MenuIcon />
-            </IconButton>
-
+            <Hidden smUp>
+              <IconButton
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="Menu"
+                onClick={this.toggleDrawer}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Hidden>
             <img src={avatar} className={classes.avatar} alt="logo" />
 
             <Typography
@@ -96,7 +123,9 @@ class MenuAppBar extends React.Component {
               Hyeran Lee
             </Typography>
 
-            <NavMenuItems />
+            <Hidden xsDown>
+              <NavMenuItems />
+            </Hidden>
 
             <div>
               <IconButton
@@ -137,4 +166,7 @@ MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(MenuAppBar);
+export default compose(
+  withStyles(styles),
+  withWidth()
+)(MenuAppBar);

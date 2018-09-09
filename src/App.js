@@ -5,7 +5,9 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { createMuiTheme } from '@material-ui/core';
 import blue from '@material-ui/core/colors/blue';
 import indigo from '@material-ui/core/colors/indigo';
-import Artworks from './components/artworks/Artworks';
+import Gallery from './components/artworks/Masonry';
+import backgroundImage from './images/artworks/art-1.jpg';
+import artworks from './images/hl_artworks';
 
 const theme = createMuiTheme({
   palette: {
@@ -19,16 +21,18 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
-          <header className="App-header">
-            <div className="App-header-background" alt="background image">
-              <div className="App-title">
-                <h1>Hyeran Lee</h1>
-              </div>
+          <header className="App-header parallax-container">
+            <div className="App-header-background parallax">
+              <img alt="background" src={backgroundImage} />
+            </div>
+            <div className="App-title">
+              <h1>Hyeran Lee</h1>
             </div>
           </header>
           <NavBar />
-          <Artworks />
+          <Gallery elements={artworks} />
         </div>
+        <div className="background" />
       </MuiThemeProvider>
     );
   }

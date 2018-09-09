@@ -5,17 +5,20 @@ header {
   text-align: center;
 }
 
+.App-header {
+  height: 103vh;
+}
+
 .App-header-background {
   /* position: absolute; */
-  background-image: url('./images/artworks/art-1.jpg');
+  /* background-image: url('./images/artworks/art-1.jpg'); */
   width: 100%;
-  height: 100vh;
   margin: 0;
   background-color: #222;
   /* height: 150px; */
   /* padding: 20px; */
   color: white;
-  position: relative;
+  /* position: relative; */
 }
 
 .App-title {
@@ -27,9 +30,10 @@ header {
 .App-title h1 {
   line-height: 100vh;
   margin: 0;
-  font-size: 5.5em;
+  font-size: 9.5em;
   color: cornflowerblue;
   text-align: center;
+  font-family: 'Nothing You Could Do', cursive;
 }
 
 .App-intro {
@@ -38,4 +42,40 @@ header {
 
 .nav-active NavBar {
   opacity: 0.5;
+}
+
+/* #navbar {
+  padding-bottom: 80px;
+} */
+
+.fixed-nav #navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+[alt="logo"] {
+  transition: all 0.5s;
+  transform: scale(1.2);
+}
+
+.fixed-nav [alt="logo"] {
+  transform: translateY(31px) scale(0.9);
+}
+
+.background {
+  opacity: 0;
+}
+
+.fixed-nav .background {
+  content: "";
+  background-image: url('./images/artworks/art-1.jpg');
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;
+  transition: opacity 1s;
 }

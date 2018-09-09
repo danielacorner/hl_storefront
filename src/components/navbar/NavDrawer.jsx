@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
-import { actionListItems, otherActionListItems } from './tileData';
+import { actionListItems, otherActionListItems } from './sidenavData';
 
 const styles = {
   list: {
@@ -27,13 +27,13 @@ class TemporaryDrawer extends React.Component {
       </div>
     );
 
-    const fullList = (
-      <div className={classes.fullList}>
-        <List>{actionListItems}</List>
-        <Divider />
-        <List>{otherActionListItems}</List>
-      </div>
-    );
+    // const fullList = (
+    //   <div className={classes.fullList}>
+    //     <List>{actionListItems}</List>
+    //     <Divider />
+    //     <List>{otherActionListItems}</List>
+    //   </div>
+    // );
 
     return (
       <div>
