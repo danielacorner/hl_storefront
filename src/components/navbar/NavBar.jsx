@@ -17,6 +17,7 @@ import withWidth from '@material-ui/core/withWidth';
 import compose from 'recompose/compose';
 import { NavLink } from 'react-router-dom';
 import * as M from 'materialize-css';
+import Badge from '@material-ui/core/Badge';
 
 const styles = {
   root: {
@@ -37,6 +38,10 @@ const styles = {
     borderRadius: '100%',
     height: 100
     // margin: '-20px 20px -20px -10px'
+  },
+  fixedAvatar: {
+    borderRadius: '100%',
+    height: 100
   }
 };
 
@@ -150,7 +155,13 @@ class MenuAppBar extends React.Component {
                 <MenuIcon />
               </IconButton>
             </Hidden>
-            <img src={avatar} className={classes.avatar} alt="logo" />
+            <img
+              src={avatar}
+              className={
+                this.props.fixed ? classes.fixedAvatar : classes.avatar
+              }
+              alt="logo"
+            />
 
             <Typography
               variant="title"
@@ -174,7 +185,9 @@ class MenuAppBar extends React.Component {
                 onClick={this.handleShoppingCartClick}
                 color="inherit"
               >
-                <ShoppingCart />
+                <Badge badgeContent={this.props.cartItemsCount}>
+                  <ShoppingCart />
+                </Badge>
               </IconButton>
               <Menu
                 id="menu-appbar"

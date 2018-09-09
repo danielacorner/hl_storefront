@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import artworks from '../../images/hl_artworks';
 import styled from 'styled-components';
-import { Button } from '@material-ui/core';
+import { Button, withStyles } from '@material-ui/core';
 import Forum from '@material-ui/icons/Forum';
 import IconButton from '@material-ui/core/IconButton';
 
@@ -89,6 +89,16 @@ const AddToCartGrid = styled.div`
   }
 `;
 
+const styles = {
+  btnAddToCart: {
+    '&$disabled': {
+      backgroundColor: '#7986cb',
+      color: 'white'
+    }
+  },
+  disabled: {}
+};
+
 class Details extends React.Component {
   state = {
     thisArt: null,
@@ -113,13 +123,14 @@ class Details extends React.Component {
       }, 0);
     }
   }
-  handleAddToCart = () => {
+  handleAddToCart = thisArt => {
     this.setState({ addingToCart: true });
-    console.log('adding to cart...');
+    this.props.onAddToCart(thisArt);
   };
   render() {
     const { title } = this.state.match.params;
     const { thisArt } = this.state;
+    const { classes } = this.props;
     return (
       <Container>
         <Paper>
@@ -157,13 +168,17 @@ class Details extends React.Component {
                     style={{
                       color: 'white',
                       fontSize: '29px',
-                      font: '400 2.2625em "Crimson Text",serif'
+                      font: '400 2.1625em "Crimson Text",serif'
                     }}
                   >
                     {thisArt.price} USD
                   </Typography>
                   <AddToCartGrid style={{ padding: '12px 12px 12px 0' }}>
                     <Button
+                      classes={{
+                        root: classes.btnAddToCart,
+                        disabled: classes.disabled
+                      }}
                       variant="contained"
                       size="large"
                       style={{
@@ -175,8 +190,9 @@ class Details extends React.Component {
                       }}
                       color="secondary"
                       onClick={this.handleAddToCart}
+                      disabled={this.state.addingToCart}
                     >
-                      {this.state.addingToCart ? 'Adding...' : 'Add to Cart'}
+                      {this.state.addingToCart ? 'Added!' : 'Add to Cart'}
                     </Button>
                     <IconButton
                       style={{
@@ -204,4 +220,4 @@ class Details extends React.Component {
   }
 }
 
-export default Details;
+export default withStyles(styles)(Details);

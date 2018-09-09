@@ -24,23 +24,71 @@ const theme = createMuiTheme({
 });
 
 class App extends Component {
+  state = {
+    shoppingCartContents: []
+  };
+  handleAddToCart = art => {
+    this.setState({
+      shoppingCartContents: [...this.state.shoppingCartContents, art.title]
+    });
+    console.log(this.state.shoppingCartContents);
+  };
+  handleUpdateCart = () => {
+    this.setState({
+      shoppingCartContents: [...this.state.shoppingCartContents, 1]
+    });
+    console.log(this.state.shoppingCartContents);
+  };
+  handleEmptyCart = () => {
+    this.setState({ shoppingCartContents: null });
+    console.log(this.state.shoppingCartContents);
+  };
+  handleProceedToCheckout = () => {
+    console.log('proceed to checkout!');
+  };
+  componentWillUpdate() {
+    // if (!document.querySelector('.App-header')) {
+    console.log(window.location.pathname);
+    // }
+  }
   render() {
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
-          <BrowserRouter>
+          <BrowserRouter onChange={this.handleRouteChange}>
             <div>
               <Route path="/" component={Header} exact />
 
-              <NavBar />
+              <NavBar cartItemsCount={this.state.shoppingCartContents.length} />
 
               <Switch>
                 <Route path="/" component={Artworks} exact />
                 <Route path="/about" component={About} exact />
                 <Route path="/favourites" component={Favourites} exact />
                 <Route path="/collections" component={Collections} exact />
-                <Route path="/works/:title" component={Details} exact />
-                <Route path="/cart" component={ShoppingCart} exact />
+                <Route
+                  path="/works/:title"
+                  render={props => (
+                    <Details
+                      {...props}
+                      onAddToCart={art => this.handleAddToCart(art)}
+                    />
+                  )}
+                  exact
+                />
+                <Route
+                  path="/cart"
+                  render={props => (
+                    <ShoppingCart
+                      {...props}
+                      contents={this.state.shoppingCartContents}
+                      onEmptyCart={this.handleEmptyCart}
+                      onUpdateCart={this.handleUpdateCart}
+                      onProceedToCheckout={this.handleProceedToCheckout}
+                    />
+                  )}
+                  exact
+                />
                 <Route path="/checkout" component={Checkout} exact />
                 <Route component={Error} />
               </Switch>
