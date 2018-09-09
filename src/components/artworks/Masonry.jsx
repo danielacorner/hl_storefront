@@ -6,10 +6,11 @@ import Typography from '@material-ui/core/Typography';
 
 // https://masonry.desandro.com/options.html
 const masonryOptions = {
+  // transitionDuration: 0,
   transitionDuration: '0.4s',
-  fitWidth: true,
-  percentPosition: true,
-  itemSelector: '.grid-item'
+  fitWidth: true
+  // percentPosition: true
+  // itemSelector: '.grid-item'
 };
 
 const styles = theme => ({
