@@ -23,7 +23,9 @@ const styles = {
   },
   flex: {
     flexGrow: 1,
-    textAlign: 'left'
+    textAlign: 'left',
+    fontFamily: "'Nothing You Could Do', cursive",
+    fontSize: '1.8em'
   },
   menuButton: {
     marginLeft: -12,
@@ -118,7 +120,7 @@ class MenuAppBar extends React.Component {
             <Typography
               variant="title"
               color="inherit"
-              className={classes.flex}
+              className={classes.flex + ' nav-title'}
             >
               Hyeran Lee
             </Typography>
