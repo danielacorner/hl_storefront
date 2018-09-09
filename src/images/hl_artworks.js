@@ -8,6 +8,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-51st-Correlation/189576/4441066/view',
     typeDimensions: 'Painting, 30 H x 40 W x 0.8 in',
+    dimensions: '30 H x 40 W x 0.8 in',
+    type: 'Painting',
     depth: 0.8,
     width: 40,
     height: 30,
@@ -23,6 +25,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-50th-Correlation/189576/4427283/view',
     typeDimensions: 'Painting, 16 H x 16 W x 1.5 in',
+    dimensions: '16 H x 16 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 16,
     height: 16,
@@ -38,6 +42,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Into-Comfort-s-Cradle/189576/4414175/view',
     typeDimensions: 'Painting, 24 H x 18 W x 0.8 in',
+    dimensions: '24 H x 18 W x 0.8 in',
+    type: 'Painting',
     depth: 0.8,
     width: 18,
     height: 24,
@@ -53,6 +59,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Life-is/189576/4414106/view',
     typeDimensions: 'Painting, 30 H x 40 W x 1.5 in',
+    dimensions: '30 H x 40 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 40,
     height: 30,
@@ -68,6 +76,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-16-I/189576/4399679/view',
     typeDimensions: 'Painting, 40 H x 30 W x 1.4 in',
+    dimensions: '40 H x 30 W x 1.4 in',
+    type: 'Painting',
     depth: 1.4,
     width: 30,
     height: 40,
@@ -83,6 +93,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-16-II/189576/4388975/view',
     typeDimensions: 'Painting, 40 H x 30 W x 1.4 in',
+    dimensions: '40 H x 30 W x 1.4 in',
+    type: 'Painting',
     depth: 1.4,
     width: 30,
     height: 40,
@@ -98,6 +110,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-49th-Correlation/189576/4376268/view',
     typeDimensions: 'Painting, 30 H x 30 W x 1.5 in',
+    dimensions: '30 H x 30 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 30,
     height: 30,
@@ -113,6 +127,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-48th-Correlation/189576/4364016/view',
     typeDimensions: 'Painting, 30 H x 40 W x 1.5 in',
+    dimensions: '30 H x 40 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 40,
     height: 30,
@@ -128,6 +144,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-15/189576/4358570/view',
     typeDimensions: 'Painting, 47.8 H x 24 W x 1.5 in',
+    dimensions: '47.8 H x 24 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 24,
     height: 48,
@@ -143,6 +161,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Better-Together/189576/4350766/view',
     typeDimensions: 'Painting, 40 H x 30 W x 1.5 in',
+    dimensions: '40 H x 30 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 30,
     height: 40,
@@ -158,6 +178,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Let-things-flow-naturally/189576/4350687/view',
     typeDimensions: 'Painting, 20 H x 28 W x 0.8 in',
+    dimensions: '20 H x 28 W x 0.8 in',
+    type: 'Painting',
     depth: 0.8,
     width: 28,
     height: 20,
@@ -173,6 +195,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-14/189576/4340488/view',
     typeDimensions: 'Painting, 30 H x 30 W x 1.5 in',
+    dimensions: '30 H x 30 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 30,
     height: 30,
@@ -188,6 +212,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-13-III/189576/4340441/view',
     typeDimensions: 'Painting, 24 H x 12 W x 1.5 in',
+    dimensions: '24 H x 12 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 12,
     height: 24,
@@ -203,6 +229,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-13-Triptych/189576/4325326/view',
     typeDimensions: 'Painting, 24 H x 36 W x 1.5 in',
+    dimensions: '24 H x 36 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 36,
     height: 24
@@ -216,6 +244,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Toward-a-New-Life/189576/4320759/view',
     typeDimensions: 'Painting, 30 H x 40 W x 0.8 in',
+    dimensions: '30 H x 40 W x 0.8 in',
+    type: 'Painting',
     depth: 0.8,
     width: 40,
     height: 30,
@@ -231,6 +261,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-12/189576/4315957/view',
     typeDimensions: 'Painting, 30 H x 30 W x 1.5 in',
+    dimensions: '30 H x 30 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 30,
     height: 30,
@@ -246,6 +278,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-47th-Correlation/189576/4299646/view',
     typeDimensions: 'Painting, 24 H x 48 W x 1.5 in',
+    dimensions: '24 H x 48 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 48,
     height: 24,
@@ -261,6 +295,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-46th-Correlation/189576/4286866/view',
     typeDimensions: 'Painting, 24 H x 48 W x 1.5 in',
+    dimensions: '24 H x 48 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 48,
     height: 24,
@@ -276,6 +312,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Running-Before-You-Can-Walk/189576/4274950/view',
     typeDimensions: 'Painting, 40 H x 30 W x 1.5 in',
+    dimensions: '40 H x 30 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 30,
     height: 40,
@@ -291,6 +329,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-11-I/189576/4257000/view',
     typeDimensions: 'Painting, 24 H x 24 W x 1.5 in',
+    dimensions: '24 H x 24 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 24,
     height: 24,
@@ -306,6 +346,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-11-II/189576/4256976/view',
     typeDimensions: 'Painting, 24 H x 24 W x 1.5 in',
+    dimensions: '24 H x 24 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 24,
     height: 24,
@@ -321,6 +363,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Relieve-Yourself-of-the-Past/189576/4240761/view',
     typeDimensions: 'Painting, 36 H x 24 W x 1.5 in',
+    dimensions: '36 H x 24 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 24,
     height: 36,
@@ -336,6 +380,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-11-Diptych/189576/4238786/view',
     typeDimensions: 'Painting, 24 H x 48 W x 1.5 in',
+    dimensions: '24 H x 48 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 48,
     height: 24
@@ -349,6 +395,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-10-Triptych/189576/4229445/view',
     typeDimensions: 'Painting, 12 H x 36 W x 1.5 in',
+    dimensions: '12 H x 36 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 36,
     height: 12,
@@ -364,6 +412,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-One-Step-at-a-Time/189576/4209359/view',
     typeDimensions: 'Painting, 30 H x 24 W x 1.5 in',
+    dimensions: '30 H x 24 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 24,
     height: 30,
@@ -379,6 +429,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-9/189576/4204721/view',
     typeDimensions: 'Painting, 30 H x 30 W x 1.5 in',
+    dimensions: '30 H x 30 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 30,
     height: 30,
@@ -393,6 +445,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-April/189576/4168600/view',
     typeDimensions: 'Painting, 24 H x 18 W x 0.8 in',
+    dimensions: '24 H x 18 W x 0.8 in',
+    type: 'Painting',
     depth: 0.8,
     width: 18,
     height: 24,
@@ -408,6 +462,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Symphony-2/189576/4155705/view',
     typeDimensions: 'Painting, 30 H x 30 W x 1.5 in',
+    dimensions: '30 H x 30 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 30,
     height: 30,
@@ -423,6 +479,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-8/189576/4148726/view',
     typeDimensions: 'Painting, 12 H x 12 W x 1.5 in',
+    dimensions: '12 H x 12 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 12,
     height: 12
@@ -436,6 +494,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-7/189576/4148704/view',
     typeDimensions: 'Painting, 10 H x 10 W x 1.5 in',
+    dimensions: '10 H x 10 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 10,
     height: 10,
@@ -451,6 +511,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Symphony-1/189576/4140527/view',
     typeDimensions: 'Painting, 30 H x 40 W x 1.5 in',
+    dimensions: '30 H x 40 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 40,
     height: 30,
@@ -466,6 +528,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Flash-in-Between/189576/4139039/view',
     typeDimensions: 'Painting, 16 H x 16 W x 1.5 in',
+    dimensions: '16 H x 16 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 16,
     height: 16,
@@ -481,6 +545,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-This-Too-Shall-Pass/189576/4133478/view',
     typeDimensions: 'Painting, 24 H x 18 W x 0.8 in',
+    dimensions: '24 H x 18 W x 0.8 in',
+    type: 'Painting',
     depth: 0.8,
     width: 18,
     height: 24,
@@ -496,6 +562,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-6-Triptych/189576/4123314/view',
     typeDimensions: 'Painting, 30 H x 72 W x 1.5 in',
+    dimensions: '30 H x 72 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 72,
     height: 30,
@@ -511,6 +579,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-6-I/189576/4116685/view',
     typeDimensions: 'Painting, 30 H x 24 W x 1.5 in',
+    dimensions: '30 H x 24 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 24,
     height: 30,
@@ -526,6 +596,8 @@ const artworks = [
     title_url:
       'https://www.saatchiart.com/art/Painting-Coexistence-6-II/189576/4115283/view',
     typeDimensions: 'Painting, 30 H x 24 W x 1.5 in',
+    dimensions: '30 H x 24 W x 1.5 in',
+    type: 'Painting',
     depth: 1.5,
     width: 24,
     height: 30,

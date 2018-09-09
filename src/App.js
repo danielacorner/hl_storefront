@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { createMuiTheme } from '@material-ui/core';
-import indigo from '@material-ui/core/colors/indigo';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import NavBar from './components/navbar/NavBar';
@@ -20,7 +19,7 @@ import Checkout from './components/checkout/Checkout';
 const theme = createMuiTheme({
   palette: {
     primary: { main: '#7986cb' },
-    secondary: indigo
+    secondary: { main: '#ef5350' }
   }
 });
 

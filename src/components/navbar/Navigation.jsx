@@ -2,32 +2,26 @@ import React, { Component } from 'react';
 import Work from '@material-ui/icons/Work';
 import Favorite from '@material-ui/icons/Favorite';
 import Collections from '@material-ui/icons/Collections';
-import { Button } from '@material-ui/core';
-import styled from 'styled-components';
-import Hidden from '@material-ui/core/Hidden';
+// import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-const List = styled.div`
-  display: grid;
-  grid-template-columns: auto auto auto;
-`;
-const Inline = styled.div`
-  color: white;
-  display: grid;
-  padding: 0 20px;
-  @media only screen and (min-width: 959px) {
-    grid-template-columns: auto auto;
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+const styles = {};
+
+const StyledTab = withStyles({
+  root: {
+    color: 'white',
+    paddingLeft: '12px',
+    '& :first-child': {
+      display: 'grid',
+      gridTemplateColumns: 'auto auto'
+    },
+    '&:focus': {
+      background: 'rgba(0,0,0,0.1)'
+    }
   }
-  grid-gap: 1vw;
-  align-items: center;
-`;
-const styles = {
-  highlighted: {
-    borderBottom: '2px solid currentColor',
-    borderBottomLeftRadius: '0',
-    borderBottomRightRadius: '0'
-  }
-};
+})(Tab);
 
 class Navigation extends Component {
   state = {
@@ -35,32 +29,37 @@ class Navigation extends Component {
       { title: 'Artworks', icon: <Work />, path: '/' },
       { title: 'Collections', icon: <Collections />, path: '/collections' },
       { title: 'Favourites', icon: <Favorite />, path: '/favourites' }
-    ]
+    ],
+    value: '/'
   };
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
   render() {
-    const { classes } = this.props;
+    const { value } = this.state;
+
     const { menuItems } = this.state;
     return (
-      <List>
+      <Tabs value={value} onChange={this.handleChange}>
         {menuItems.map(item => (
-          <Button
+          <StyledTab
+            className="waves-effect waves-light"
             key={item.title}
-            color="inherit"
+            label={item.title}
+            disableRipple={true}
             size="small"
-            onClick={() => this.props.onClick(item.path)}
-            className={
-              this.props.currentPath === item.path ? classes.highlighted : null
-            }
-          >
-            <NavLink to={item.path}>
-              <Inline>
-                <Hidden smDown>{item.icon}</Hidden>
-                {item.title}
-              </Inline>
-            </NavLink>
-          </Button>
+            onClick={() => {
+              this.handleChange;
+              this.props.onClick(item.path);
+            }}
+            component={NavLink}
+            to={item.path}
+            icon={item.icon}
+            value={item.path}
+          />
         ))}
-      </List>
+      </Tabs>
     );
   }
 }

@@ -2,74 +2,206 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import artworks from '../../images/hl_artworks';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { Button } from '@material-ui/core';
+import Forum from '@material-ui/icons/Forum';
+import IconButton from '@material-ui/core/IconButton';
 
 const Container = styled.div`
-padding: 0;
-width: 90%;
-margin: 50px auto;
-div {
-  padding: 8px;
-  position: relative;
+  padding: 0;
+  width: 98%;
+  margin: 50px auto;
+  div {
+    padding: 12px;
+    position: relative;
+    img {
+      width: 100%;
+    }
+    h1 {
+      padding: 10px 16px;
+      margin: 0;
+      font-size: 4.5vw;
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+    }
+  }
+`;
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: 0 auto;
+  @media only screen and (min-width: 1096px) {
+    grid-template-columns: 100px auto;
+  }
+  grid-template-rows: auto auto;
+`;
+const DetailsImages = styled.div`
+  display: inline;
   img {
     width: 100%;
   }
-  h1 {
-    padding: 16px;
-    margin: 0;
-    font-size: 4.5vw;
-    font-family:
+`;
+const DetailsAndCTA = styled.div`
+  display: grid;
+  grid-template-rows: auto auto;
+  @media only screen and (min-width: 960px) {
+    grid-template-columns: auto 300px;
+    grid-gap: 20px;
+  }
+`;
+const DetailsPane = styled.div`
+  display: grid;
+  grid-template-columns: auto 330px;
+  @media only screen and (min-width: 960px) {
+    display: block;
+  }
+  background: rgba(0, 0, 0, 0.06);
+`;
+const DetailsInfo = styled.div`
+  padding: 5px 0;
+  div,
+  aside {
+    font: 400 1.3em 'Crimson Text', serif;
+  }
+`;
+const CTA = styled.div`
+  background: #333;
+  height: 116px;
+  width: calc(100% + 32px);
+  :after {
+    content: '';
+    position: absolute;
+    display: block;
+    border-style: solid;
+    border-color: #000 transparent transparent #000;
+    border-width: 5px;
+    bottom: -0.6rem;
+    right: 0;
+  }
+  display: grid;
+  grid-template-columns: auto 160px;
+`;
+const AddToCartGrid = styled.div`
+  display: grid;
+  grid-template-rows: auto auto;
+  button {
+    height: 43px;
+    padding: 0;
+  }
+`;
+
+class Details extends React.Component {
+  state = {
+    thisArt: null,
+    match: null,
+    addingToCart: false
+  };
+  componentWillMount() {
+    this.setState({
+      thisArt: artworks.filter(
+        art => art.title === this.props.match.params.title
+      )[0],
+      match: this.props.match
+    });
+    window.scrollTo(0, 0);
+
+    // if not fixed, fix nav
+    if (!Array.from(document.body.classList).includes('fixed-nav')) {
+      setTimeout(() => {
+        document.body.classList.add('fixed-nav');
+        document.body.style.paddingTop =
+          document.querySelector('#navbar').offsetHeight + 'px';
+      }, 0);
+    }
+  }
+  handleAddToCart = () => {
+    this.setState({ addingToCart: true });
+    console.log('adding to cart...');
+  };
+  render() {
+    const { title } = this.state.match.params;
+    const { thisArt } = this.state;
+    return (
+      <Container>
+        <Paper>
+          <GridContainer>
+            <div className="spacer" />
+            <h1>{title}</h1>
+
+            <DetailsImages>
+              {/* todo: gather details images */}
+              {[thisArt, thisArt, thisArt, thisArt, thisArt].map((art, i) => (
+                <img key={i} src={art.image} alt={art.image} />
+              ))}
+            </DetailsImages>
+
+            <DetailsAndCTA>
+              <img src={thisArt.image} alt={title} />
+
+              <DetailsPane>
+                <DetailsInfo>
+                  <Typography variant="body2" align="left">
+                    {thisArt.type}
+                  </Typography>
+
+                  <Typography variant="body2" align="left">
+                    Size: {thisArt.dimensions}
+                  </Typography>
+                  <Typography variant="caption" align="left">
+                    Ships in a cardboard box
+                  </Typography>
+                </DetailsInfo>
+
+                <CTA>
+                  <Typography
+                    variant="headline"
+                    style={{
+                      color: 'white',
+                      fontSize: '29px',
+                      font: '400 2.2625em "Crimson Text",serif'
+                    }}
+                  >
+                    {thisArt.price} USD
+                  </Typography>
+                  <AddToCartGrid style={{ padding: '12px 12px 12px 0' }}>
+                    <Button
+                      variant="contained"
+                      size="large"
+                      style={{
+                        borderRadius: '0',
+                        textTransform: 'none',
+                        fontWeight: 'bold',
+                        fontFamily: 'Helvetica',
+                        fontSize: '1.125rem'
+                      }}
+                      color="secondary"
+                      onClick={this.handleAddToCart}
+                    >
+                      {this.state.addingToCart ? 'Adding...' : 'Add to Cart'}
+                    </Button>
+                    <IconButton
+                      style={{
+                        width: 'auto',
+                        fontWeight: 'bold',
+                        color: 'white',
+                        borderRadius: '0'
+                      }}
+                      aria-label="Make an Offer"
+                      onClick={this.toggleDrawer}
+                    >
+                      <Forum style={{ transform: 'scale(0.7)' }} />
+                      <Typography variant="body2" style={{ color: 'white' }}>
+                        Make an Offer
+                      </Typography>
+                    </IconButton>
+                  </AddToCartGrid>
+                </CTA>
+              </DetailsPane>
+            </DetailsAndCTA>
+          </GridContainer>
+        </Paper>
+      </Container>
+    );
   }
 }
-`
-const GridContainer = styled.div`
-display: grid;
-grid-template-columns: 100px auto;
-grid-template-rows: auto auto;
-`
-const LeftSide = styled.div`
-display: inline;
-img {
-  width: 100%;
-}
-`
-const RightSide = styled.div``
-
-
-const Details = ({ match }) => {
-  const thisArt = artworks.filter(art => art.title === match.params.title)[0];
-  window.scrollTo(0,0);
-
-  // if not fixed, fix nav
-  if(!Array.from(document.body.classList).includes('fixed-nav')) {
-    setTimeout(() => {document.body.classList.add('fixed-nav');
-    document.body.style.paddingTop = document.querySelector('#navbar').offsetHeight + 'px';},0)
-  }
-
-  return (
-    <Container>
-      <Paper>
-        <GridContainer>
-        <div className="spacer"/>
-        <h1>{match.params.title}</h1>
-        <LeftSide>
-        {/* todo: gather details images */}
-          {[thisArt, thisArt, thisArt, thisArt, thisArt].map((art, i) => <img key={i} src={art.image} alt={art.image}/>)}
-        </LeftSide>
-        <RightSide>
-        <img src={thisArt.image} alt={match.params.title} />
-        <Typography variant="subheading" align="left">
-          {thisArt.title}
-        </Typography>
-        <Typography variant="caption" align="left">
-          {thisArt.typeDimensions}
-        </Typography>
-        <Typography align="right">{thisArt.price}</Typography>
-        </RightSide>
-        </GridContainer>
-      </Paper>
-    </Container>
-  );
-};
 
 export default Details;
