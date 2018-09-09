@@ -18,10 +18,10 @@ header {
   /* background-image: url('./images/artworks/art-1.jpg'); */
   width: 100%;
   margin: 0;
-  background-color: #222;
+  /* background-color: #222; */
   /* height: 150px; */
   /* padding: 20px; */
-  color: white;
+  /* color: white; */
   /* position: relative; */
 }
 
@@ -79,11 +79,15 @@ header {
 
 /* mobile */
 
+[alt="background"] {
+  opacity: 1
+}
+
 [alt="logo"] {
   z-index: 1;
   transition: all 0.5s;
   transform: scale(2);
-  margin: -20px 20px -20px calc(50% - 100px);
+  margin: -20px 20px -20px 0;
 }
 
 .fixed-nav [alt="logo"] {
@@ -116,7 +120,7 @@ header {
 
 .fixed-nav .background {
   content: "";
-  background-image: url('./images/artworks/art-1.jpg');
+  background-image: url('https://assets.saatchiart.com/saatchi/189576/art/4993421/4063243-ZFYFMGJM-8.jpg');
   opacity: 0.5;
   top: 0;
   left: 0;

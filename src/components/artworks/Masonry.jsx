@@ -3,6 +3,7 @@ import Masonry from 'react-masonry-component';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import { NavLink } from 'react-router-dom';
 
 // https://masonry.desandro.com/options.html
 const masonryOptions = {
@@ -23,7 +24,15 @@ const styles = theme => ({
     position: 'relative',
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+    transform: 'scale(0.98)',
+    transition: 'transform 0.3s, box-shadow 0.3s',
+    '&:hover': {
+      cursor: 'pointer',
+      transform: 'scale(1)',
+      boxShadow:
+        '1px 2px 5px 0px rgba(0, 0, 0, 0.2), 1px 3px 2px 0px rgba(0, 0, 0, 0.14), 1px 4px 1px -2px rgba(0, 0, 0, 0.12)'
+    }
   },
   gridImage: {
     width: '100%',
@@ -46,14 +55,16 @@ class Gallery extends React.Component {
           className={classes.root + ' grid-item'}
         >
           <Paper className={classes.paper}>
-            <img src={element.image} alt={element.title} />
-            <Typography variant="subheading" align="left">
-              {element.title}
-            </Typography>
-            <Typography variant="caption" align="left">
-              {element.typeDimensions}
-            </Typography>
-            <Typography align="right">{element.price}</Typography>
+            <NavLink to={'/works/' + element.title}>
+              <img src={element.image} alt={element.title} />
+              <Typography variant="subheading" align="left">
+                {element.title}
+              </Typography>
+              <Typography variant="caption" align="left">
+                {element.typeDimensions}
+              </Typography>
+              <Typography align="right">{element.price}</Typography>
+            </NavLink>
           </Paper>
         </li>
       );

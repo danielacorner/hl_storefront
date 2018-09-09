@@ -11,10 +11,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import avatar from '../../images/hl_avatar.jpg';
 import NavDrawer from './NavDrawer';
-import NavMenuItems from './NavMenuItems';
+import Navigation from './Navigation';
 import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
 import compose from 'recompose/compose';
+import { NavLink } from 'react-router-dom';
+import * as M from 'materialize-css';
 
 const styles = {
   root: {
@@ -43,7 +45,8 @@ class MenuAppBar extends React.Component {
     anchorEl: null,
     drawerOpen: false,
     nav: null,
-    topOfNav: null
+    topOfNav: null,
+    currentPath: '/'
   };
 
   // listen for clicking outside
@@ -55,21 +58,53 @@ class MenuAppBar extends React.Component {
     document.removeEventListener('mousedown', this.handleClick, false);
   };
   componentDidMount = () => {
-    const nav = document.querySelector('#navbar');
+    // this.handleNavigate();
+    const getNav = document.querySelector('#navbar');
     this.setState({
-      nav: nav,
-      topOfNav: nav.offsetTop
+      nav: getNav,
+      topOfNav: getNav.offsetTop
     });
+    if (!document.querySelector('.App-title')) {
+      //fix the nav if not on the main page
+      this.handleNavigate();
+    }
+  };
+
+  handleNavigate = path => {
+    this.setState({ currentPath: path });
+    // if the header is showing, remove fixed-nav
+    setTimeout(() => {
+      if (document.querySelector('.App-title')) {
+        // on main page, scroll down past header
+        document.body.classList.remove('fixed-nav');
+        setTimeout(() => {
+          document.querySelector('#navbar').scrollIntoView(true);
+          document.body.classList.add('fixed-nav');
+        }, 0);
+        const elems = document.querySelectorAll('.parallax');
+        M.Parallax.init(elems, {});
+      } else {
+        // document.body.classList.remove('fixed-nav');
+        setTimeout(
+          () => document.querySelector('#navbar').scrollIntoView(true),
+          0
+        );
+      }
+    }, 0);
   };
 
   fixNav = () => {
-    const { nav, topOfNav } = this.state;
+    const { topOfNav } = this.state;
     if (window.scrollY >= topOfNav) {
-      document.body.style.paddingTop = nav.offsetHeight + 'px';
+      document.body.style.paddingTop =
+        document.querySelector('#navbar').offsetHeight + 'px';
       document.body.classList.add('fixed-nav');
     } else {
-      document.body.style.paddingTop = 0;
-      document.body.classList.remove('fixed-nav');
+      // only remove fixed nav if on main page
+      if (document.querySelector('.App-title')) {
+        document.body.style.paddingTop = 0;
+        document.body.classList.remove('fixed-nav');
+      }
     }
   };
 
@@ -126,7 +161,10 @@ class MenuAppBar extends React.Component {
             </Typography>
 
             <Hidden xsDown>
-              <NavMenuItems />
+              <Navigation
+                onClick={path => this.handleNavigate(path)}
+                currentPath={this.state.currentPath}
+              />
             </Hidden>
 
             <div>
@@ -152,8 +190,16 @@ class MenuAppBar extends React.Component {
                 open={open}
                 onClose={this.handleClose}
               >
-                <MenuItem onClick={this.handleClose}>Shopping Cart</MenuItem>
-                <MenuItem onClick={this.handleClose}>Checkout</MenuItem>
+                <MenuItem onClick={this.handleClose}>
+                  <NavLink to="/cart" style={{ color: 'black' }}>
+                    Shopping Cart
+                  </NavLink>
+                </MenuItem>
+                <MenuItem onClick={this.handleClose}>
+                  <NavLink to="/checkout" style={{ color: 'black' }}>
+                    Checkout
+                  </NavLink>
+                </MenuItem>
               </Menu>
             </div>
           </Toolbar>

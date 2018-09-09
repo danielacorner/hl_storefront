@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import './App.css';
-import NavBar from './components/navbar/NavBar';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { createMuiTheme } from '@material-ui/core';
 import indigo from '@material-ui/core/colors/indigo';
-import Gallery from './components/artworks/Masonry';
-import backgroundImage from './images/artworks/art-1.jpg';
-import artworks from './images/hl_artworks';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import NavBar from './components/navbar/NavBar';
+// Routes
+import Details from './components/details/Details';
+import About from './components/about/About';
+import Favourites from './components/favourites/Favourites';
+import Collections from './components/collections/Collections';
+import Artworks from './components/artworks/Artworks';
+import Error from './components/page-not-found/Error';
+import Header from './components/navbar/Header';
+import ShoppingCart from './components/shopping-cart/ShoppingCart';
+import Checkout from './components/checkout/Checkout';
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: '#689f38' },
+    primary: { main: '#7986cb' },
     secondary: indigo
   }
 });
@@ -20,18 +29,26 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
-          <header className="App-header parallax-container">
-            <div className="App-header-background parallax">
-              <img alt="background" src={backgroundImage} />
+          <BrowserRouter>
+            <div>
+              <Route path="/" component={Header} exact />
+
+              <NavBar />
+
+              <Switch>
+                <Route path="/" component={Artworks} exact />
+                <Route path="/about" component={About} exact />
+                <Route path="/favourites" component={Favourites} exact />
+                <Route path="/collections" component={Collections} exact />
+                <Route path="/works/:title" component={Details} exact />
+                <Route path="/cart" component={ShoppingCart} exact />
+                <Route path="/checkout" component={Checkout} exact />
+                <Route component={Error} />
+              </Switch>
             </div>
-            <div className="App-title">
-              <h1>Hyeran Lee</h1>
-            </div>
-          </header>
-          <NavBar />
-          <Gallery elements={artworks} />
+          </BrowserRouter>
+          <div className="background" />
         </div>
-        <div className="background" />
       </MuiThemeProvider>
     );
   }
