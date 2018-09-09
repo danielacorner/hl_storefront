@@ -3,7 +3,6 @@ import './App.css';
 import NavBar from './components/navbar/NavBar';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { createMuiTheme } from '@material-ui/core';
-import blue from '@material-ui/core/colors/blue';
 import indigo from '@material-ui/core/colors/indigo';
 import Gallery from './components/artworks/Masonry';
 import backgroundImage from './images/artworks/art-1.jpg';
@@ -11,7 +10,7 @@ import artworks from './images/hl_artworks';
 
 const theme = createMuiTheme({
   palette: {
-    primary: blue,
+    primary: { main: '#689f38' },
     secondary: indigo
   }
 });

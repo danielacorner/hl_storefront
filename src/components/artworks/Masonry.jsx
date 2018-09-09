@@ -62,7 +62,7 @@ class Gallery extends React.Component {
       <Masonry
         className={classes.myGallery} // default ''
         elementType={'ul'} // default 'div'
-        style={{ paddingTop: '10vw' }}
+        style={{ paddingTop: '15vw' }}
         options={masonryOptions} // default {}
         disableImagesLoaded={false} // default false
         updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false

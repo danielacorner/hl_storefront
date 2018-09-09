@@ -33,8 +33,8 @@ const styles = {
   },
   avatar: {
     borderRadius: '100%',
-    height: 100,
-    margin: '-20px 20px -20px -10px'
+    height: 100
+    // margin: '-20px 20px -20px -10px'
   }
 };
 
