@@ -64,6 +64,7 @@ class MenuAppBar extends React.Component {
   };
   componentWillUnount = () => {
     document.removeEventListener('mousedown', this.handleClick, false);
+    window.removeEventListener('scroll', this.fixNav);
   };
   componentDidMount = () => {
     // this.handleNavigate();
@@ -72,8 +73,10 @@ class MenuAppBar extends React.Component {
       nav: getNav,
       topOfNav: getNav.offsetTop
     });
-    if (!document.querySelector('.App-title')) {
+    if (window.location.pathname!=="/hl_storefront/") {
       //fix the nav if not on the main page
+      document.body.className = '';
+      document.body.classList.add('fixed-nav');
       this.handleNavigate();
     }
   };
@@ -82,7 +85,7 @@ class MenuAppBar extends React.Component {
     this.setState({ currentPath: path });
     // if the header is showing, remove fixed-nav
     setTimeout(() => {
-      if (document.querySelector('.App-title')) {
+      if (window.location.pathname==="/hl_storefront/") {
         // on main page, scroll down past header
         document.body.classList.remove('fixed-nav');
         setTimeout(() => {
@@ -94,7 +97,7 @@ class MenuAppBar extends React.Component {
       } else {
         // document.body.classList.remove('fixed-nav');
         setTimeout(
-          () => document.querySelector('#navbar').scrollIntoView(true),
+          () => window.scrollTo(0,0),
           0
         );
       }

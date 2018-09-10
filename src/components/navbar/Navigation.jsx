@@ -13,6 +13,7 @@ const styles = {};
 const StyledTab = withStyles({
   root: {
     color: 'white',
+    zIndex: 0,
     paddingLeft: '12px',
     '& :first-child': {
       display: 'grid',
