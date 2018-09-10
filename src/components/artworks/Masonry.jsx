@@ -27,11 +27,17 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
     transform: 'scale(0.98)',
     transition: 'transform 0.3s, box-shadow 0.3s',
+    '& img': {
+      transition: 'all 0.3s'
+    },
     '&:hover': {
       cursor: 'pointer',
       transform: 'scale(1)',
       boxShadow:
-        '1px 2px 5px 0px rgba(0, 0, 0, 0.2), 1px 3px 2px 0px rgba(0, 0, 0, 0.14), 1px 4px 1px -2px rgba(0, 0, 0, 0.12)'
+        '1px 2px 5px 0px rgba(0, 0, 0, 0.2), 1px 3px 2px 0px rgba(0, 0, 0, 0.14), 1px 4px 1px -2px rgba(0, 0, 0, 0.12)',
+      '& img': {
+        boxShadow: '0px 7px 19px -3px rgba(0,0,0,0.75)'
+      }
     }
   },
   gridImage: {
