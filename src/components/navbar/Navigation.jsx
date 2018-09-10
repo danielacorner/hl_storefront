@@ -26,11 +26,19 @@ const StyledTab = withStyles({
 class Navigation extends Component {
   state = {
     menuItems: [
-      { title: 'Artworks', icon: <Work />, path: '/' },
-      { title: 'Collections', icon: <Collections />, path: '/collections' },
-      { title: 'Favourites', icon: <Favorite />, path: '/favourites' }
+      { title: 'Artworks', icon: <Work />, path: '/hl_storefront/' },
+      {
+        title: 'Collections',
+        icon: <Collections />,
+        path: '/hl_storefront/collections'
+      },
+      {
+        title: 'Favourites',
+        icon: <Favorite />,
+        path: '/hl_storefront/favourites'
+      }
     ],
-    value: '/'
+    value: '/hl_storefront/'
   };
   handleChange = (event, value) => {
     this.setState({ value });

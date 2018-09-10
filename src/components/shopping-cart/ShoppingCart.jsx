@@ -117,7 +117,7 @@ export default class ShoppingCart extends Component {
           </Button>
           <Button
             component={Link}
-            to="/checkout"
+            to="/hl_storefront/checkout"
             color="secondary"
             variant="contained"
           >

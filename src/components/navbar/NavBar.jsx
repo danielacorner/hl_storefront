@@ -217,12 +217,15 @@ class MenuAppBar extends React.Component {
                 onClose={this.handleClose}
               >
                 <MenuItem onClick={this.handleClose}>
-                  <NavLink to="/cart" style={{ color: 'black' }}>
+                  <NavLink to="/hl_storefront/cart" style={{ color: 'black' }}>
                     Shopping Cart
                   </NavLink>
                 </MenuItem>
                 <MenuItem onClick={this.handleClose}>
-                  <NavLink to="/checkout" style={{ color: 'black' }}>
+                  <NavLink
+                    to="/hl_storefront/checkout"
+                    style={{ color: 'black' }}
+                  >
                     Checkout
                   </NavLink>
                 </MenuItem>

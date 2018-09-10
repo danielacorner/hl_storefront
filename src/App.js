@@ -59,17 +59,25 @@ class App extends Component {
         <div className="App">
           <BrowserRouter onChange={this.handleRouteChange}>
             <div>
-              <Route path="/" component={Header} exact />
+              <Route path="/hl_storefront/" component={Header} exact />
 
               <NavBar cartItemsCount={this.state.shoppingCartContents.length} />
 
               <Switch>
-                <Route path="/" component={Artworks} exact />
-                <Route path="/about" component={About} exact />
-                <Route path="/favourites" component={Favourites} exact />
-                <Route path="/collections" component={Collections} exact />
+                <Route path="/hl_storefront/" component={Artworks} exact />
+                <Route path="/hl_storefront/about" component={About} exact />
                 <Route
-                  path="/works/:title"
+                  path="/hl_storefront/favourites"
+                  component={Favourites}
+                  exact
+                />
+                <Route
+                  path="/hl_storefront/collections"
+                  component={Collections}
+                  exact
+                />
+                <Route
+                  path="/hl_storefront/works/:title"
                   render={props => (
                     <Details
                       {...props}
@@ -79,7 +87,7 @@ class App extends Component {
                   exact
                 />
                 <Route
-                  path="/cart"
+                  path="/hl_storefront/cart"
                   render={props => (
                     <ShoppingCart
                       // {...props}
@@ -90,7 +98,11 @@ class App extends Component {
                   )}
                   exact
                 />
-                <Route path="/checkout" component={Checkout} exact />
+                <Route
+                  path="/hl_storefront/checkout"
+                  component={Checkout}
+                  exact
+                />
                 <Route component={Error} />
               </Switch>
             </div>
