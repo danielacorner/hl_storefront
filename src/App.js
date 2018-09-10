@@ -8,7 +8,7 @@ import NavBar from './components/navbar/NavBar';
 // Routes
 import Details from './components/details/Details';
 import About from './components/about/About';
-import Favourites from './components/favourites/Favourites';
+import Contact from './components/contact/Contact';
 import Collections from './components/collections/Collections';
 import Artworks from './components/artworks/Artworks';
 import Error from './components/page-not-found/Error';
@@ -71,8 +71,8 @@ class App extends Component {
                 <Route path="/hl_storefront/" component={Artworks} exact />
                 <Route path="/hl_storefront/about" component={About} exact />
                 <Route
-                  path="/hl_storefront/favourites"
-                  component={Favourites}
+                  path="/hl_storefront/contact"
+                  component={Contact}
                   exact
                 />
                 <Route

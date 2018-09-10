@@ -180,7 +180,7 @@ export default class About extends Component {
           <strong>Seventh Correlation</strong>
         </Typography>
         <Typography variant="body1">
-          <a href="http://shop.societyofcanadianartists.com/" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer">
+          <a href="http://shop.societyofcanadianartists.com/" target="_blank" rel="noopener noreferrer">
             http://shop.societyofcanadianartists.com/
           </a>
         </Typography>

@@ -163,6 +163,7 @@ class MenuAppBar extends React.Component {
             </Hidden>
             <img
               src={avatar}
+              style={{zIndex: 1}}
               className={
                 this.props.fixed ? classes.fixedAvatar : classes.avatar
               }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Work from '@material-ui/icons/Work';
-import Favorite from '@material-ui/icons/Favorite';
+import Message from '@material-ui/icons/Message';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Collections from '@material-ui/icons/Collections';
 // import styled from 'styled-components';
@@ -40,9 +40,9 @@ class Navigation extends Component {
         path: '/hl_storefront/collections'
       },
       {
-        title: 'Favourites',
-        icon: <Favorite />,
-        path: '/hl_storefront/favourites'
+        title: 'Contact',
+        icon: <Message />,
+        path: '/hl_storefront/contact'
       }
     ],
     value: '/hl_storefront/'
