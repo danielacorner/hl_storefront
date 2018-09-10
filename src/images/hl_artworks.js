@@ -14,7 +14,8 @@ const artworks = [
     width: 40,
     height: 30,
     price: '$2,160',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -31,7 +32,8 @@ const artworks = [
     width: 16,
     height: 16,
     price: '$605',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -48,7 +50,8 @@ const artworks = [
     width: 18,
     height: 24,
     price: '$820',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -65,7 +68,8 @@ const artworks = [
     width: 40,
     height: 30,
     price: '$2,160',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -82,7 +86,8 @@ const artworks = [
     width: 30,
     height: 40,
     price: '$2,460',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -99,7 +104,8 @@ const artworks = [
     width: 30,
     height: 40,
     price: '$2,460',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -116,7 +122,8 @@ const artworks = [
     width: 30,
     height: 30,
     price: '$2,160',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -133,7 +140,8 @@ const artworks = [
     width: 40,
     height: 30,
     price: '$2,460',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -150,7 +158,8 @@ const artworks = [
     width: 24,
     height: 48,
     price: '$2,710',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -167,7 +176,8 @@ const artworks = [
     width: 30,
     height: 40,
     price: '$2,810',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -184,7 +194,8 @@ const artworks = [
     width: 28,
     height: 20,
     price: '$970',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -201,7 +212,8 @@ const artworks = [
     width: 30,
     height: 30,
     price: '$1,960',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -218,7 +230,8 @@ const artworks = [
     width: 12,
     height: 24,
     price: '$770',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -250,7 +263,8 @@ const artworks = [
     width: 40,
     height: 30,
     price: '$2,360',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -267,7 +281,8 @@ const artworks = [
     width: 30,
     height: 30,
     price: '$1,800',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -284,7 +299,8 @@ const artworks = [
     width: 48,
     height: 24,
     price: '$3,210',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -301,7 +317,8 @@ const artworks = [
     width: 48,
     height: 24,
     price: '$3,210',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -318,7 +335,8 @@ const artworks = [
     width: 30,
     height: 40,
     price: '$2,260',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -335,7 +353,8 @@ const artworks = [
     width: 24,
     height: 24,
     price: '$1,300',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -352,7 +371,8 @@ const artworks = [
     width: 24,
     height: 24,
     price: '$1,300',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -369,7 +389,8 @@ const artworks = [
     width: 24,
     height: 36,
     price: '$1,700',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -401,7 +422,8 @@ const artworks = [
     width: 36,
     height: 12,
     price: '$1,150',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -418,7 +440,8 @@ const artworks = [
     width: 24,
     height: 30,
     price: '$1,960',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -435,7 +458,8 @@ const artworks = [
     width: 30,
     height: 30,
     price: '$1,800',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -451,7 +475,8 @@ const artworks = [
     width: 18,
     height: 24,
     price: '$1,200',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -468,7 +493,8 @@ const artworks = [
     width: 30,
     height: 30,
     price: '$1,500',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -500,7 +526,8 @@ const artworks = [
     width: 10,
     height: 10,
     price: '$340',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -517,7 +544,8 @@ const artworks = [
     width: 40,
     height: 30,
     price: '$1,860',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -534,7 +562,8 @@ const artworks = [
     width: 16,
     height: 16,
     price: '$755',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -551,7 +580,8 @@ const artworks = [
     width: 18,
     height: 24,
     price: '$755',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -568,7 +598,8 @@ const artworks = [
     width: 72,
     height: 30,
     price: 'Prints from $40',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -585,7 +616,8 @@ const artworks = [
     width: 24,
     height: 30,
     price: '$1,600',
-    size: 3
+    size: 3,
+    quantity: 1
   },
   {
     innerHTML:
@@ -602,7 +634,8 @@ const artworks = [
     width: 24,
     height: 30,
     price: '$1,600',
-    size: 3
+    size: 3,
+    quantity: 1
   }
 ];
 export default artworks;

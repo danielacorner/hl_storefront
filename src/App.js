@@ -29,6 +29,7 @@ class App extends Component {
   };
 
   handleAddToCart = art => {
+    // check quantities
     this.setState({
       shoppingCartContents: [...this.state.shoppingCartContents, art]
     });
@@ -49,7 +50,10 @@ class App extends Component {
   };
 
   handleEmptyCart = () => {
-    this.setState({ shoppingCartContents: [] });
+    if (window.confirm('Are you sure?')) {
+      this.setState({ shoppingCartContents: [] });
+      localStorage.setItem('cart', JSON.stringify([]));
+    }
   };
 
   render() {

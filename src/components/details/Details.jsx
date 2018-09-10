@@ -104,8 +104,10 @@ class Details extends React.Component {
   state = {
     thisArt: null,
     match: null,
-    addingToCart: false
+    addingToCart: false,
+    zeroQuantity: false
   };
+
   componentWillMount() {
     this.setState({
       thisArt: artworks.filter(
@@ -125,9 +127,19 @@ class Details extends React.Component {
     }
   }
   handleAddToCart = () => {
-    this.setState({ addingToCart: true });
-    this.props.onAddToCart(this.state.thisArt);
+    if (!this.alreadyInCart()) {
+      this.setState({ addingToCart: true });
+      this.props.onAddToCart(this.state.thisArt);
+    } else {
+      this.setState({ zeroQuantity: true });
+    }
   };
+  alreadyInCart = () => {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    // is the item already in your cart? (assuming all quantity = 1)
+    return cart.some(item => item.title === this.state.thisArt.title);
+  };
+
   render() {
     const { title } = this.state.match.params;
     const { thisArt } = this.state;
@@ -213,6 +225,18 @@ class Details extends React.Component {
                     </IconButton>
                   </AddToCartGrid>
                 </CTA>
+                <Typography
+                  variant="body2"
+                  color="error"
+                  align="center"
+                  style={{
+                    display: this.state.zeroQuantity ? 'block' : 'none',
+                    marginTop: '8px',
+                    fontWeight: 'bold'
+                  }}
+                >
+                  This item is already in your cart!
+                </Typography>
               </DetailsPane>
             </DetailsAndCTA>
           </GridContainer>
