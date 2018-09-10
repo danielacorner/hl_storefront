@@ -42,6 +42,9 @@ const styles = {
   fixedAvatar: {
     borderRadius: '100%',
     height: 100
+  },
+  badgeHidden: {
+    display: 'none'
   }
 };
 
@@ -185,7 +188,17 @@ class MenuAppBar extends React.Component {
                 onClick={this.handleShoppingCartClick}
                 color="inherit"
               >
-                <Badge badgeContent={this.props.cartItemsCount}>
+                <Badge
+                  classes={{
+                    root: classes.badge,
+                    badge:
+                      this.props.cartItemsCount === 0 && classes.badgeHidden
+                  }}
+                  badgeContent={this.props.cartItemsCount}
+                  color={
+                    this.props.cartItemsCount === 0 ? 'primary' : 'secondary'
+                  }
+                >
                   <ShoppingCart />
                 </Badge>
               </IconButton>

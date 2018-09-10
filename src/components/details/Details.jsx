@@ -18,7 +18,7 @@ const Container = styled.div`
       width: 100%;
     }
     h1 {
-      padding: 10px 16px;
+      padding: 10px 8px 10px 8px;
       margin: 0;
       font-size: 4.5vw;
       font-family: 'Crimson Text', serif;
@@ -123,9 +123,9 @@ class Details extends React.Component {
       }, 0);
     }
   }
-  handleAddToCart = thisArt => {
+  handleAddToCart = () => {
     this.setState({ addingToCart: true });
-    this.props.onAddToCart(thisArt);
+    this.props.onAddToCart(this.state.thisArt);
   };
   render() {
     const { title } = this.state.match.params;
@@ -171,7 +171,8 @@ class Details extends React.Component {
                       font: '400 2.1625em "Crimson Text",serif'
                     }}
                   >
-                    {thisArt.price} USD
+                    {thisArt.price}{' '}
+                    <span style={{ fontSize: '0.6em' }}>USD</span>
                   </Typography>
                   <AddToCartGrid style={{ padding: '12px 12px 12px 0' }}>
                     <Button

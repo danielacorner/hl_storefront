@@ -25,33 +25,35 @@ const theme = createMuiTheme({
 
 class App extends Component {
   state = {
-    shoppingCartContents: []
+    shoppingCartContents: JSON.parse(localStorage.getItem('cart')) || []
   };
+
   handleAddToCart = art => {
     this.setState({
-      shoppingCartContents: [...this.state.shoppingCartContents, art.title]
+      shoppingCartContents: [...this.state.shoppingCartContents, art]
     });
-    console.log(this.state.shoppingCartContents);
+    localStorage.setItem(
+      'cart',
+      JSON.stringify([...this.state.shoppingCartContents, art])
+    );
   };
-  handleUpdateCart = () => {
+
+  handleRemoveItem = art => {
+    const cart = this.state.shoppingCartContents;
+    const index = cart.findIndex(cartItem => cartItem.title === art.title);
+    const newCart = [...cart.slice(0, index), ...cart.slice(index + 1)];
     this.setState({
-      shoppingCartContents: [...this.state.shoppingCartContents, 1]
+      shoppingCartContents: newCart
     });
-    console.log(this.state.shoppingCartContents);
+    localStorage.setItem('cart', JSON.stringify(newCart));
   };
+
   handleEmptyCart = () => {
-    this.setState({ shoppingCartContents: null });
-    console.log(this.state.shoppingCartContents);
+    this.setState({ shoppingCartContents: [] });
   };
-  handleProceedToCheckout = () => {
-    console.log('proceed to checkout!');
-  };
-  componentWillUpdate() {
-    // if (!document.querySelector('.App-header')) {
-    console.log(window.location.pathname);
-    // }
-  }
+
   render() {
+    // console.log(JSON.parse(localStorage.getItem('cart')));
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
@@ -80,11 +82,10 @@ class App extends Component {
                   path="/cart"
                   render={props => (
                     <ShoppingCart
-                      {...props}
+                      // {...props}
                       contents={this.state.shoppingCartContents}
                       onEmptyCart={this.handleEmptyCart}
-                      onUpdateCart={this.handleUpdateCart}
-                      onProceedToCheckout={this.handleProceedToCheckout}
+                      onRemoveItem={art => this.handleRemoveItem(art)}
                     />
                   )}
                   exact
