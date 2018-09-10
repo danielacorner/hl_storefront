@@ -61,7 +61,7 @@ class Gallery extends React.Component {
           className={classes.root + ' grid-item'}
         >
           <Paper className={classes.paper}>
-            <NavLink to={'/works/' + element.title}>
+            <NavLink to={'/hl_storefront/works/' + element.title}>
               <img src={element.image} alt={element.title} />
               <Typography variant="subheading" align="left">
                 {element.title}
