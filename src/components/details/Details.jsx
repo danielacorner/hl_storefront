@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 const Container = styled.div`
   padding: 0;
   width: 98%;
+  max-width: 1124px;
   margin: 50px auto;
   div {
     padding: 12px;
