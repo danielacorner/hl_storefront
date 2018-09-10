@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Work from '@material-ui/icons/Work';
 import Favorite from '@material-ui/icons/Favorite';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import Collections from '@material-ui/icons/Collections';
 // import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
@@ -27,6 +28,11 @@ class Navigation extends Component {
   state = {
     menuItems: [
       { title: 'Artworks', icon: <Work />, path: '/hl_storefront/' },
+      {
+        title: 'About Hyeran',
+        icon: <AccountCircle />,
+        path: '/hl_storefront/about'
+      },
       {
         title: 'Collections',
         icon: <Collections />,
