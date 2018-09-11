@@ -16,7 +16,6 @@ import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
 import compose from 'recompose/compose';
 import { NavLink } from 'react-router-dom';
-import * as M from 'materialize-css';
 import Badge from '@material-ui/core/Badge';
 
 const styles = {
@@ -53,8 +52,7 @@ class MenuAppBar extends React.Component {
     anchorEl: null,
     drawerOpen: false,
     nav: null,
-    topOfNav: null,
-    currentPath: '/'
+    topOfNav: null
   };
 
   // listen for clicking outside
@@ -67,41 +65,17 @@ class MenuAppBar extends React.Component {
     window.removeEventListener('scroll', this.fixNav);
   };
   componentDidMount = () => {
-    // this.handleNavigate();
     const getNav = document.querySelector('#navbar');
     this.setState({
       nav: getNav,
       topOfNav: getNav.offsetTop
     });
-    if (window.location.pathname!=="/hl_storefront/") {
+    if (window.location.pathname !== '/hl_storefront/') {
       //fix the nav if not on the main page
       document.body.className = '';
       document.body.classList.add('fixed-nav');
-      this.handleNavigate();
+      this.props.onNavigate();
     }
-  };
-
-  handleNavigate = path => {
-    this.setState({ currentPath: path });
-    // if the header is showing, remove fixed-nav
-    setTimeout(() => {
-      if (window.location.pathname==="/hl_storefront/") {
-        // on main page, scroll down past header
-        document.body.classList.remove('fixed-nav');
-        setTimeout(() => {
-          document.querySelector('#navbar').scrollIntoView(true);
-          document.body.classList.add('fixed-nav');
-        }, 0);
-        const elems = document.querySelectorAll('.parallax');
-        M.Parallax.init(elems, {});
-      } else {
-        // document.body.classList.remove('fixed-nav');
-        setTimeout(
-          () => window.scrollTo(0,0),
-          0
-        );
-      }
-    }, 0);
   };
 
   fixNav = () => {
@@ -163,7 +137,7 @@ class MenuAppBar extends React.Component {
             </Hidden>
             <img
               src={avatar}
-              style={{zIndex: 1}}
+              style={{ zIndex: 1 }}
               className={
                 this.props.fixed ? classes.fixedAvatar : classes.avatar
               }
@@ -180,8 +154,8 @@ class MenuAppBar extends React.Component {
 
             <Hidden xsDown>
               <Navigation
-                onClick={path => this.handleNavigate(path)}
-                currentPath={this.state.currentPath}
+                onClick={path => this.props.onNavigate(path)}
+                currentPath={this.props.currentPath}
               />
             </Hidden>
 

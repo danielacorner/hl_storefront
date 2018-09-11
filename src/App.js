@@ -5,6 +5,7 @@ import { createMuiTheme } from '@material-ui/core';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import NavBar from './components/navbar/NavBar';
+import * as M from 'materialize-css';
 // Routes
 import Details from './components/details/Details';
 import About from './components/about/About';
@@ -26,7 +27,8 @@ const theme = createMuiTheme({
 
 class App extends Component {
   state = {
-    shoppingCartContents: JSON.parse(localStorage.getItem('cart')) || []
+    shoppingCartContents: JSON.parse(localStorage.getItem('cart')) || [],
+    currentPath: '/hl_storefront/'
   };
 
   handleAddToCart = art => {
@@ -57,8 +59,29 @@ class App extends Component {
     }
   };
 
+  handleNavigate = path => {
+    this.setState({ currentPath: path });
+    // if the header is showing, remove fixed-nav
+    setTimeout(() => {
+      if (window.location.pathname === '/hl_storefront/') {
+        // on main page, scroll down past header
+        document.body.classList.remove('fixed-nav');
+        setTimeout(() => {
+          document.querySelector('#navbar').scrollIntoView(true);
+          document.body.classList.add('fixed-nav');
+        }, 0);
+        const elems = document.querySelectorAll('.parallax');
+        M.Parallax.init(elems, {});
+      } else {
+        // document.body.classList.remove('fixed-nav');
+        setTimeout(() => window.scrollTo(0, 0), 0);
+      }
+    }, 0);
+  };
+
   render() {
     // console.log(JSON.parse(localStorage.getItem('cart')));
+    const { currentPath, shoppingCartContents } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
@@ -66,7 +89,11 @@ class App extends Component {
             <div>
               <Route path="/hl_storefront/" component={Header} exact />
 
-              <NavBar cartItemsCount={this.state.shoppingCartContents.length} />
+              <NavBar
+                onNavigate={path => this.handleNavigate(path)}
+                currentPath={currentPath}
+                cartItemsCount={shoppingCartContents.length}
+              />
 
               <Switch>
                 <Route path="/hl_storefront/" component={Artworks} exact />
@@ -101,9 +128,10 @@ class App extends Component {
                   render={props => (
                     <ShoppingCart
                       // {...props}
-                      contents={this.state.shoppingCartContents}
+                      contents={shoppingCartContents}
                       onEmptyCart={this.handleEmptyCart}
                       onRemoveItem={art => this.handleRemoveItem(art)}
+                      onNavigate={path => this.handleNavigate(path)}
                     />
                   )}
                   exact
