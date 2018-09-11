@@ -72,8 +72,6 @@ class MenuAppBar extends React.Component {
     });
     if (window.location.pathname !== '/hl_storefront/') {
       //fix the nav if not on the main page
-      document.body.className = '';
-      document.body.classList.add('fixed-nav');
       this.props.onNavigate();
     }
   };

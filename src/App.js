@@ -65,14 +65,18 @@ class App extends Component {
     setTimeout(() => {
       if (window.location.pathname === '/hl_storefront/') {
         // on main page, scroll down past header
-        document.body.classList.remove('fixed-nav');
+        Array.from(document.body.classList).includes('fixed-nav') &&
+          document.body.classList.remove('fixed-nav');
         setTimeout(() => {
           document.querySelector('#navbar').scrollIntoView(true);
-          document.body.classList.add('fixed-nav');
+          !Array.from(document.body.classList).includes('fixed-nav') &&
+            document.body.classList.add('fixed-nav');
         }, 0);
         const elems = document.querySelectorAll('.parallax');
         M.Parallax.init(elems, {});
       } else {
+        !Array.from(document.body.classList).includes('fixed-nav') &&
+          document.body.classList.add('fixed-nav');
         // document.body.classList.remove('fixed-nav');
         setTimeout(() => window.scrollTo(0, 0), 0);
       }

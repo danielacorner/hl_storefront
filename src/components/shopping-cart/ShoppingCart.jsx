@@ -59,7 +59,12 @@ export default class ShoppingCart extends Component {
         <CartContents>
           <Typography
             variant="display1"
-            style={{ fontWeight: 'bold', paddingBottom: '40px', color: '#333' }}
+            style={{
+              fontSize: '24px',
+              fontWeight: 'bold',
+              paddingBottom: '24px',
+              color: '#333'
+            }}
           >
             Cart
           </Typography>
