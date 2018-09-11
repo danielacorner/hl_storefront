@@ -4,21 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { NavLink } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-
-const collections = [
-  { title: 'Correlation' },
-  { title: 'Interaction' },
-  { title: 'In-Flux' },
-  { title: 'Story' },
-  { title: 'Shaken' },
-  { title: 'Mid-thought' },
-  { title: 'Exploration' },
-  { title: 'Aligned' },
-  { title: 'People' },
-  { title: 'Emotion' },
-  { title: 'Figure' },
-  { title: 'Life Drawing' },
-]
+import collections from '../../images/collections/collections';
 
 const Container = styled.div`
   width: 95%;

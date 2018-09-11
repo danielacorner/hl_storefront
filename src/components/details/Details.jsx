@@ -118,6 +118,7 @@ class Details extends React.Component {
     window.scrollTo(0, 0);
 
     // if not fixed, fix nav
+    // todo: this should be taken care of in navbar
     if (!Array.from(document.body.classList).includes('fixed-nav')) {
       setTimeout(() => {
         document.body.classList.add('fixed-nav');

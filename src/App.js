@@ -10,6 +10,7 @@ import Details from './components/details/Details';
 import About from './components/about/About';
 import Contact from './components/contact/Contact';
 import Collections from './components/collections/Collections';
+import Collection from './components/collections/Collection';
 import Artworks from './components/artworks/Artworks';
 import Error from './components/page-not-found/Error';
 import Header from './components/navbar/Header';
@@ -78,6 +79,11 @@ class App extends Component {
                 <Route
                   path="/hl_storefront/collections"
                   component={Collections}
+                  exact
+                />
+                <Route
+                  path="/hl_storefront/collections/:title"
+                  render={props => <Collection {...props} />}
                   exact
                 />
                 <Route
