@@ -8,7 +8,9 @@ const Container = styled.div`
   max-width: 624px;
   margin: auto;
   display: grid;
-  height: 100vh;
+  height: 70vw;
+  max-height: 100vh;
+  min-height: 60vh;
   align-content: center;
 `;
 const Card = styled.div`

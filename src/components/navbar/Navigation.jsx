@@ -8,6 +8,8 @@ import { NavLink } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Tooltip from '@material-ui/core/Tooltip';
+
 const styles = {};
 
 const StyledTab = withStyles({
@@ -34,8 +36,7 @@ const StyledTab = withStyles({
     },
     '&:focus': {
       background: 'rgba(0,0,0,0.1)'
-    },
-    content: ''
+    }
   }
 })(Tab);
 
@@ -72,21 +73,26 @@ class Navigation extends Component {
     return (
       <Tabs value={value} onChange={this.handleChange}>
         {menuItems.map(item => (
-          <StyledTab
-            className="waves-effect waves-light"
+          <Tooltip
             key={item.title}
-            label={item.title}
-            disableRipple={true}
-            // size="small"
-            onClick={() => {
-              this.handleChange;
-              this.props.onClick(item.path);
-            }}
-            component={NavLink}
-            to={item.path}
-            icon={item.icon}
-            value={item.path}
-          />
+            title={window.innerWidth < 960 ? item.title : ''}
+          >
+            <StyledTab
+              // key={item.title}
+              className="waves-effect waves-light"
+              label={item.title}
+              disableRipple={true}
+              // size="small"
+              onClick={() => {
+                this.handleChange;
+                this.props.onClick(item.path);
+              }}
+              component={NavLink}
+              to={item.path}
+              icon={item.icon}
+              value={item.path}
+            />
+          </Tooltip>
         ))}
       </Tabs>
     );
