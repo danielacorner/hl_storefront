@@ -120,8 +120,8 @@ header {
 
 .fixed-nav .background {
   content: "";
-  background-image: url('https://assets.saatchiart.com/saatchi/189576/art/4993421/4063243-ZFYFMGJM-8.jpg');
-  opacity: 0.5;
+  background-image: url('./images/artworks/background.jpg');
+  opacity: 0.3;
   top: 0;
   left: 0;
   bottom: 0;

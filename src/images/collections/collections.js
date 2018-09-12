@@ -4,6 +4,8 @@ const collections = [
       'https://payload488.cargocollective.com/1/5/185546/12065620/prt_1478655842.jpg',
     url: 'http://cargocollective.com/hyeran/Correlation',
     title: 'Correlation',
+    description:
+      'Lorem ipsum dolor sit amet en aturium telefono ist el quantum phlogiston. Ceci nest past un pipe, seulement un image de text',
     title_url: 'http://cargocollective.com/hyeran/Correlation',
     images: [
       {
@@ -69,6 +71,8 @@ const collections = [
       'https://payload12.cargocollective.com/1/5/185546/2557574/prt_1438871759.jpg',
     url: 'http://cargocollective.com/hyeran/Interaction',
     title: 'Interaction',
+    description:
+      'Lorem ipsum dolor sit amet en aturium telefono ist el quantum phlogiston. Ceci nest past un pipe, seulement un image de text',
     title_url: 'http://cargocollective.com/hyeran/Interaction',
     images: [
       {
@@ -142,6 +146,8 @@ const collections = [
       'https://payload12.cargocollective.com/1/5/185546/2557684/prt_1438874512.jpg',
     url: 'http://cargocollective.com/hyeran/In-Flux',
     title: 'In-Flux',
+    description:
+      'Lorem ipsum dolor sit amet en aturium telefono ist el quantum phlogiston. Ceci nest past un pipe, seulement un image de text',
     title_url: 'http://cargocollective.com/hyeran/In-Flux',
     images: [
       {
@@ -199,6 +205,8 @@ const collections = [
       'https://payload430.cargocollective.com/1/5/185546/10918674/prt_1478660593.jpg',
     url: 'http://cargocollective.com/hyeran/Story',
     title: 'Story',
+    description:
+      'Lorem ipsum dolor sit amet en aturium telefono ist el quantum phlogiston. Ceci nest past un pipe, seulement un image de text',
     title_url: 'http://cargocollective.com/hyeran/Story',
     images: [
       {
@@ -212,6 +220,8 @@ const collections = [
       'https://payload12.cargocollective.com/1/5/185546/2559112/prt_1399400612.jpg',
     url: 'http://cargocollective.com/hyeran/Shaken',
     title: 'Shaken',
+    description:
+      'Lorem ipsum dolor sit amet en aturium telefono ist el quantum phlogiston. Ceci nest past un pipe, seulement un image de text',
     title_url: 'http://cargocollective.com/hyeran/Shaken',
     images: [
       {
@@ -233,6 +243,8 @@ const collections = [
       'https://payload13.cargocollective.com/1/5/185546/2560541/prt_1481987258.jpg',
     url: 'http://cargocollective.com/hyeran/Mid-thought',
     title: 'Mid-thought',
+    description:
+      'Lorem ipsum dolor sit amet en aturium telefono ist el quantum phlogiston. Ceci nest past un pipe, seulement un image de text',
     title_url: 'http://cargocollective.com/hyeran/Mid-thought',
     images: [
       {
@@ -266,6 +278,8 @@ const collections = [
       'https://payload427.cargocollective.com/1/5/185546/10846816/prt_1450524164.jpg',
     url: 'http://cargocollective.com/hyeran/Exploration',
     title: 'Exploration',
+    description:
+      'Lorem ipsum dolor sit amet en aturium telefono ist el quantum phlogiston. Ceci nest past un pipe, seulement un image de text',
     title_url: 'http://cargocollective.com/hyeran/Exploration',
     images: [
       {
@@ -299,6 +313,8 @@ const collections = [
       'https://payload12.cargocollective.com/1/5/185546/2559285/prt_1396058988.JPG',
     url: 'http://cargocollective.com/hyeran/Aligned',
     title: 'Aligned',
+    description:
+      'Lorem ipsum dolor sit amet en aturium telefono ist el quantum phlogiston. Ceci nest past un pipe, seulement un image de text',
     title_url: 'http://cargocollective.com/hyeran/Aligned',
     images: [
       {
@@ -328,6 +344,8 @@ const collections = [
       'https://payload61.cargocollective.com/1/5/185546/3523146/prt_1373485016.JPG',
     url: 'http://cargocollective.com/hyeran/People',
     title: 'People',
+    description:
+      'Lorem ipsum dolor sit amet en aturium telefono ist el quantum phlogiston. Ceci nest past un pipe, seulement un image de text',
     title_url: 'http://cargocollective.com/hyeran/People',
     images: [
       {
@@ -360,6 +378,8 @@ const collections = [
       'https://payload13.cargocollective.com/1/5/185546/2571426/prt_1396059489.JPG',
     url: 'http://cargocollective.com/hyeran/Emotion',
     title: 'Emotion',
+    description:
+      'Lorem ipsum dolor sit amet en aturium telefono ist el quantum phlogiston. Ceci nest past un pipe, seulement un image de text',
     title_url: 'http://cargocollective.com/hyeran/Emotion',
     images: [
       {
@@ -393,6 +413,8 @@ const collections = [
       'https://payload466.cargocollective.com/1/5/185546/11635072/prt_1480350163.jpg',
     url: 'http://cargocollective.com/hyeran/Figure',
     title: 'Figure',
+    description:
+      'Lorem ipsum dolor sit amet en aturium telefono ist el quantum phlogiston. Ceci nest past un pipe, seulement un image de text',
     title_url: 'http://cargocollective.com/hyeran/Figure',
     images: [
       {
@@ -474,6 +496,8 @@ const collections = [
       'https://payload13.cargocollective.com/1/5/185546/2560689/prt_1445639158.jpg',
     url: 'http://cargocollective.com/hyeran/Life-Drawing',
     title: 'Life Drawing',
+    description:
+      'Lorem ipsum dolor sit amet en aturium telefono ist el quantum phlogiston. Ceci nest past un pipe, seulement un image de text',
     title_url: 'http://cargocollective.com/hyeran/Life-Drawing',
     images: [
       {

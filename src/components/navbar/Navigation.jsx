@@ -12,16 +12,30 @@ const styles = {};
 
 const StyledTab = withStyles({
   root: {
+    minWidth: null,
     color: 'white',
     zIndex: 0,
-    paddingLeft: '12px',
+    paddingLeft: '0',
+    '@media (min-width: 960px)': {
+      paddingLeft: '12px'
+    },
     '& :first-child': {
       display: 'grid',
-      gridTemplateColumns: 'auto auto'
+      gridTemplateColumns: 'auto',
+      '@media (min-width: 960px)': {
+        gridTemplateColumns: '20px 1fr'
+      },
+      '& span': {
+        display: 'none',
+        '@media (min-width: 960px)': {
+          display: 'block'
+        }
+      }
     },
     '&:focus': {
       background: 'rgba(0,0,0,0.1)'
-    }
+    },
+    content: ''
   }
 })(Tab);
 
@@ -63,7 +77,7 @@ class Navigation extends Component {
             key={item.title}
             label={item.title}
             disableRipple={true}
-            size="small"
+            // size="small"
             onClick={() => {
               this.handleChange;
               this.props.onClick(item.path);
