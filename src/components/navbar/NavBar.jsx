@@ -5,8 +5,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import avatar from '../../images/hl_avatar.jpg';
@@ -17,6 +15,13 @@ import withWidth from '@material-ui/core/withWidth';
 import compose from 'recompose/compose';
 import { NavLink } from 'react-router-dom';
 import Badge from '@material-ui/core/Badge';
+//icons
+import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import MenuIcon from '@material-ui/icons/Menu';
+import Work from '@material-ui/icons/Work';
+import Message from '@material-ui/icons/Message';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Collections from '@material-ui/icons/Collections';
 
 const styles = {
   root: {
@@ -52,7 +57,25 @@ class MenuAppBar extends React.Component {
     anchorEl: null,
     drawerOpen: false,
     nav: null,
-    topOfNav: null
+    topOfNav: null,
+    menuItems: [
+      { title: 'Artworks', icon: <Work />, path: '/hl_storefront/' },
+      {
+        title: 'About Hyeran',
+        icon: <AccountCircle />,
+        path: '/hl_storefront/about'
+      },
+      {
+        title: 'Collections',
+        icon: <Collections />,
+        path: '/hl_storefront/collections'
+      },
+      {
+        title: 'Contact',
+        icon: <Message />,
+        path: '/hl_storefront/contact'
+      }
+    ]
   };
 
   // listen for clicking outside
@@ -95,10 +118,13 @@ class MenuAppBar extends React.Component {
     // if the click is outside, close the nav drawer
     Array.from(e.target.classList)
       .join(',')
-      .includes('MuiBackdrop') && this.handleClickOutside();
+      .includes('MuiBackdrop') && this.closeDrawer();
   };
-  handleClickOutside = () => {
-    this.setState({ drawerOpen: false });
+
+  closeDrawer = () => {
+    this.setState({
+      drawerOpen: false
+    });
   };
 
   toggleDrawer = () => {
@@ -123,6 +149,7 @@ class MenuAppBar extends React.Component {
       <div className={classes.root} id="navbar">
         <AppBar position="static">
           <Toolbar>
+            {/* mobile sidenav menu button */}
             <Hidden smUp>
               <IconButton
                 className={classes.menuButton}
@@ -133,6 +160,7 @@ class MenuAppBar extends React.Component {
                 <MenuIcon />
               </IconButton>
             </Hidden>
+
             <img
               src={avatar}
               style={{ zIndex: 1 }}
@@ -150,14 +178,16 @@ class MenuAppBar extends React.Component {
               Hyeran Lee
             </Typography>
 
+            {/* desktop tabs */}
             <Hidden xsDown>
               <Navigation
-                onClick={path => this.props.onNavigate(path)}
+                menuItems={this.state.menuItems}
                 currentPath={this.props.currentPath}
               />
             </Hidden>
 
             <div>
+              {/* shopping cart icon button */}
               <IconButton
                 aria-owns={open ? 'menu-appbar' : null}
                 aria-haspopup="true"
@@ -178,6 +208,8 @@ class MenuAppBar extends React.Component {
                   <ShoppingCart />
                 </Badge>
               </IconButton>
+
+              {/* shopping cart menu */}
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
@@ -209,7 +241,14 @@ class MenuAppBar extends React.Component {
             </div>
           </Toolbar>
         </AppBar>
-        <NavDrawer open={this.state.drawerOpen} />
+
+        {/* mobile sidenav menu */}
+        <NavDrawer
+          open={this.state.drawerOpen}
+          menuItems={this.state.menuItems}
+          onNavigate={this.props.onNavigate}
+          closeDrawer={this.closeDrawer}
+        />
       </div>
     );
   }

@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import Work from '@material-ui/icons/Work';
-import Message from '@material-ui/icons/Message';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Collections from '@material-ui/icons/Collections';
 // import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
@@ -42,24 +38,6 @@ const StyledTab = withStyles({
 
 class Navigation extends Component {
   state = {
-    menuItems: [
-      { title: 'Artworks', icon: <Work />, path: '/hl_storefront/' },
-      {
-        title: 'About Hyeran',
-        icon: <AccountCircle />,
-        path: '/hl_storefront/about'
-      },
-      {
-        title: 'Collections',
-        icon: <Collections />,
-        path: '/hl_storefront/collections'
-      },
-      {
-        title: 'Contact',
-        icon: <Message />,
-        path: '/hl_storefront/contact'
-      }
-    ],
     value: '/hl_storefront/'
   };
   handleChange = (event, value) => {
@@ -69,7 +47,7 @@ class Navigation extends Component {
   render() {
     const { value } = this.state;
 
-    const { menuItems } = this.state;
+    const { menuItems } = this.props;
     return (
       <Tabs value={value} onChange={this.handleChange}>
         {menuItems.map(item => (

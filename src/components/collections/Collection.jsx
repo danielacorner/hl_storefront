@@ -58,7 +58,6 @@ class Collections extends Component {
           {collection.title}
         </Typography>
         {collection.images.map(imageObj => {
-          console.log(imageObj);
           return (
             <div key={JSON.stringify(imageObj)}>
               <img
