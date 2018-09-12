@@ -73,26 +73,27 @@ class Navigation extends Component {
     return (
       <Tabs value={value} onChange={this.handleChange}>
         {menuItems.map(item => (
-          <Tooltip
+          // todo: look into tab + tooltip bug -- initialize tooltip using materialize-css?
+          // <Tooltip
+          //   key={item.title}
+          //   title={window.innerWidth < 960 ? item.title : ''}
+          // >
+          <StyledTab
             key={item.title}
-            title={window.innerWidth < 960 ? item.title : ''}
-          >
-            <StyledTab
-              // key={item.title}
-              className="waves-effect waves-light"
-              label={item.title}
-              disableRipple={true}
-              // size="small"
-              onClick={() => {
-                this.handleChange;
-                this.props.onClick(item.path);
-              }}
-              component={NavLink}
-              to={item.path}
-              icon={item.icon}
-              value={item.path}
-            />
-          </Tooltip>
+            className="waves-effect waves-light"
+            label={item.title}
+            disableRipple={true}
+            // size="small"
+            onClick={() => {
+              this.handleChange;
+              this.props.onClick(item.path);
+            }}
+            component={NavLink}
+            to={item.path}
+            icon={item.icon}
+            value={item.path}
+          />
+          // </Tooltip>
         ))}
       </Tabs>
     );

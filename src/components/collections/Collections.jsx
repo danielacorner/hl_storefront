@@ -32,42 +32,46 @@ const styles = {
       }
     }
   }
-}
+};
 
 class Collections extends Component {
   render() {
-    const { classes } = this.props
-    return (<Container>
-        <Typography variant="display2" style={{marginTop: '1.8em'}}>
+    const { classes } = this.props;
+    return (
+      <Container>
+        <Typography variant="display2" style={{ marginTop: '1.8em' }}>
           Collections
         </Typography>
-        <Grid container
-        spacing={32}>
-        {collections.map((col) => {
-          const colImage = require(`../../images/collections/${col.title}/tn.jpg`)
-          return (
-            <Grid item key={JSON.stringify(col)}
-            xs={12}
-            md={6}
-            lg={4}
-            >
-          <NavLink to={`/hl_storefront/collections/${col.title}`}>
-
-            <img src={colImage} alt={col.title} style={{width: '100%'}}
-                        className={classes.gridImg}
-
-            />
-        <Typography align="center" variant="title" style={{fontWeight: 'bold'}}>
-          {col.title}
-        </Typography> 
-        </NavLink>
+        <Grid container spacing={32}>
+          {collections.map(col => {
+            const colImage = require(`../../images/collections/${
+              col.title
+            }/tn.jpg`);
+            return (
+              <Grid item key={JSON.stringify(col)} xs={12} sm={6} md={6} lg={4}>
+                <NavLink to={`/hl_storefront/collections/${col.title}`}>
+                  <img
+                    src={colImage}
+                    alt={col.title}
+                    style={{ width: '100%' }}
+                    className={classes.gridImg}
+                  />
+                  <Typography
+                    align="center"
+                    variant="title"
+                    style={{ fontWeight: 'bold' }}
+                  >
+                    {col.title}
+                  </Typography>
+                </NavLink>
+              </Grid>
+            );
+          })}
         </Grid>
-          )
-        })}
-        </Grid>
-        <br/>
-        </Container>)
+        <br />
+      </Container>
+    );
   }
 }
 
-export default withStyles(styles)(Collections)
+export default withStyles(styles)(Collections);

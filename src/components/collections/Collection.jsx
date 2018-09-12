@@ -24,10 +24,10 @@ const styles = {
     transform: 'scale(0.98)',
     '&:hover': {
       transform: 'translateY(-2px) scale(1)',
-      boxShadow: '0px 7px 19px -3px rgba(0,0,0,0.75)',
-      '& + h2': {
-        textDecoration: 'underline'
-      }
+      boxShadow: '0px 7px 19px -3px rgba(0,0,0,0.75)'
+      // '& + h2': {
+      //   textDecoration: 'underline'
+      // }
     }
   }
 };
@@ -57,11 +57,12 @@ class Collections extends Component {
         >
           {collection.title}
         </Typography>
-        {collection.images.map(image => {
+        {collection.images.map(imageObj => {
+          console.log(imageObj);
           return (
-            <div key={JSON.stringify(image)}>
+            <div key={JSON.stringify(imageObj)}>
               <img
-                src={image}
+                src={imageObj.image}
                 alt={collection.title}
                 style={{ width: '100%' }}
                 className={classes.gridImg}
@@ -71,8 +72,11 @@ class Collections extends Component {
                 variant="title"
                 style={{ fontWeight: 'bold' }}
               >
-                {collection.title}
+                {imageObj.caption}
               </Typography>
+              <br />
+              <br />
+              <br />
             </div>
           );
         })}
