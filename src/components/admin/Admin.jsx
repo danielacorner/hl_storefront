@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
+import Autocomplete from './Autocomplete';
 
 const styles = theme => ({
   container: {
@@ -14,6 +16,13 @@ const styles = theme => ({
   },
   menu: {
     width: 200
+  },
+  formField: {
+    display: 'grid',
+    gridTemplateRows: 'repeat(auto-fill, auto)',
+    '& *': {
+      color: 'white'
+    }
   }
 });
 
@@ -22,13 +31,14 @@ class Admin extends Component {
     text: ''
   };
 
-  handleChange = e => {
+  // Add Artwork
+  handleAddArtInputChange = e => {
     const newText = e.target.value;
     this.setState({
       text: newText
     });
   };
-  handleKeyDown = e => {
+  handleAddArtInputKeyDown = e => {
     if (e.key === 'Enter') {
       this.props.onSubmit(this.state.text);
       this.setState({
@@ -36,14 +46,23 @@ class Admin extends Component {
       });
     }
   };
+
+  // Add Collection
+
+  // Update Artwork
+
+  // Remove Artwork
+
   render() {
     const { text } = this.state;
+    const { classes } = this.props;
     return (
       <div
         style={{
           display: 'grid',
           placeItems: 'center center',
-          background: '#333',
+          background: 'rgba(0,0,0,0.8)',
+          color: 'white',
           position: 'fixed',
           top: '0',
           bottom: '0',
@@ -51,16 +70,48 @@ class Admin extends Component {
           left: '70vw'
         }}
       >
-        <div>
+        <div className={classes.formField}>
           <TextField
-            id="name"
-            label="artwork..."
+            id="add-art"
+            label="Add an artwork..."
             value={text}
-            onChange={this.handleChange}
-            onKeyDown={this.handleKeyDown}
+            onChange={this.handleAddArtInputChange}
+            onKeyDown={this.handleAddArtInputKeyDown}
             margin="normal"
             fullWidth
           />
+          <TextField
+            id="update-art"
+            label="Update an artwork..."
+            value={text}
+            onChange={this.handleAddArtInputChange}
+            onKeyDown={this.handleAddArtInputKeyDown}
+            margin="normal"
+            fullWidth
+          />
+          <Autocomplete removeType="artwork" />
+
+          <Divider />
+
+          <TextField
+            id="add-collection"
+            label="Add a collection..."
+            value={text}
+            onChange={this.handleAddCollectionInputChange}
+            onKeyDown={this.handleAddCollectionInputKeyDown}
+            margin="normal"
+            fullWidth
+          />
+          <TextField
+            id="update-collection"
+            label="Update a collection..."
+            value={text}
+            onChange={this.handleAddArtInputChange}
+            onKeyDown={this.handleAddArtInputKeyDown}
+            margin="normal"
+            fullWidth
+          />
+          <Autocomplete removeType="collection" />
         </div>
       </div>
     );
