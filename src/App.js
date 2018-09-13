@@ -17,6 +17,7 @@ import Error from './components/page-not-found/Error';
 import Header from './components/navbar/Header';
 import ShoppingCart from './components/shopping-cart/ShoppingCart';
 import Checkout from './components/checkout/Checkout';
+import Admin from './components/admin/Admin';
 
 const theme = createMuiTheme({
   palette: {
@@ -31,6 +32,8 @@ class App extends Component {
     currentPath: '/hl_storefront/'
   };
 
+  // Shopping Cart
+
   handleAddToCart = art => {
     // check quantities
     this.setState({
@@ -41,8 +44,7 @@ class App extends Component {
       JSON.stringify([...this.state.shoppingCartContents, art])
     );
   };
-
-  handleRemoveItem = art => {
+  handleRemoveFromCart = art => {
     const cart = this.state.shoppingCartContents;
     const index = cart.findIndex(cartItem => cartItem.title === art.title);
     const newCart = [...cart.slice(0, index), ...cart.slice(index + 1)];
@@ -51,13 +53,14 @@ class App extends Component {
     });
     localStorage.setItem('cart', JSON.stringify(newCart));
   };
-
   handleEmptyCart = () => {
     if (window.confirm('Are you sure?')) {
       this.setState({ shoppingCartContents: [] });
       localStorage.setItem('cart', JSON.stringify([]));
     }
   };
+
+  // Router
 
   handleNavigate = path => {
     this.setState({ currentPath: path });
@@ -89,6 +92,7 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
+          {/* handleRouteChange unused */}
           <BrowserRouter onChange={this.handleRouteChange}>
             <div>
               <Route path="/hl_storefront/" component={Header} exact />
@@ -99,7 +103,22 @@ class App extends Component {
                 cartItemsCount={shoppingCartContents.length}
               />
 
+              {/* Router */}
               <Switch>
+                {/* Admin */}
+                <Route
+                  path="/hl_storefront/admin"
+                  render={props => {
+                    return (
+                      <React.Fragment>
+                        <Artworks />
+                        <Admin {...props} />
+                      </React.Fragment>
+                    );
+                  }}
+                  exact
+                />
+
                 <Route path="/hl_storefront/" component={Artworks} exact />
                 <Route path="/hl_storefront/about" component={About} exact />
                 <Route
@@ -130,11 +149,10 @@ class App extends Component {
                 <Route
                   path="/hl_storefront/cart"
                   render={props => (
-                    <ShoppingCart
-                      // {...props}
+                    <ShoppingCart // {...props}
                       contents={shoppingCartContents}
                       onEmptyCart={this.handleEmptyCart}
-                      onRemoveItem={art => this.handleRemoveItem(art)}
+                      onRemoveItem={art => this.handleRemoveFromCart(art)}
                       onNavigate={path => this.handleNavigate(path)}
                     />
                   )}
@@ -149,6 +167,8 @@ class App extends Component {
               </Switch>
             </div>
           </BrowserRouter>
+
+          {/* Background */}
           <div className="background" />
         </div>
       </MuiThemeProvider>
