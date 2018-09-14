@@ -58,7 +58,7 @@ class MasonryGallery extends React.Component {
     const childElements = elements.map(element => {
       return (
         <li
-          key={JSON.stringify(element)}
+          key={`${element.id}-art-item`}
           className={classes.root + ' grid-item'}
         >
           <Paper className={classes.paper}>

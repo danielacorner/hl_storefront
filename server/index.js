@@ -53,13 +53,15 @@ const resolvers = {
   Mutation: {
     createArt: async (_, { input }) => {
       // optional args
-      input.caption = input.caption || ''; // if no value, set to falsy
+      input.caption = input.caption || '';
       input.price = input.price || 0;
       if (input.avail == undefined) input.avail = true;
+
       const art = new Art(input);
       await art.save();
       return art;
     },
+    // https://medium.com/@haidermalik504/building-apis-with-graphql-nodejs-and-mongoose-64655c062dd2
     updateArt: async (_, { id, input }) => {
       // if null or undefined don't update them
       await Art.findOneAndUpdate(id, input);
@@ -70,7 +72,7 @@ const resolvers = {
       return true;
     },
     removeAllArt: async () => {
-      await Art.find().remove();
+      await Art.deleteMany();
       return true;
     }
   }
