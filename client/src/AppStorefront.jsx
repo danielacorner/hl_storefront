@@ -79,7 +79,7 @@ class AppStorefront extends Component {
 
   render() {
     const { currentPath, shoppingCartContents } = this.state;
-    const { allArt, onRemove } = this.props;
+    const { allArt } = this.props;
     return (
       // ?handleroutechange unused
       <BrowserRouter onChange={this.handleRouteChange}>
@@ -100,11 +100,7 @@ class AppStorefront extends Component {
               render={props => {
                 return (
                   <React.Fragment>
-                    <MasonryGallery
-                      elements={allArt}
-                      admin={true}
-                      onRemove={art => onRemove(art)}
-                    />
+                    <MasonryGallery elements={allArt} admin={true} />
                     <Admin {...props} />
                   </React.Fragment>
                 );

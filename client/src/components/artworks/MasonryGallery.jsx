@@ -7,6 +7,8 @@ import { NavLink } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
+import { DataContext } from '../../App';
+
 // https://masonry.desandro.com/options.html
 const masonryOptions = {
   // transitionDuration: 0,
@@ -61,13 +63,12 @@ const styles = theme => ({
     }
   }
 });
-const Context = React.createContext();
 
 const imagesLoadedOptions = { background: '.my-bg-image-el' };
 
 class MasonryGallery extends React.Component {
   render() {
-    const { classes, elements, admin, onRemove } = this.props;
+    const { classes, elements, admin } = this.props;
     const childElements = elements.map(element => {
       return (
         <li
@@ -75,16 +76,19 @@ class MasonryGallery extends React.Component {
           className={classes.root + ' grid-item'}
         >
           {admin && (
-            <Context.Consumer>
-              {context => (
-                <IconButton
-                  className={classes.closeButton}
-                  onClick={() => context.removeArt(element)}
-                >
-                  <CloseIcon />
-                </IconButton>
-              )}
-            </Context.Consumer>
+            <DataContext.Consumer>
+              {context => {
+                console.log('context', context);
+                return (
+                  <IconButton
+                    className={classes.closeButton}
+                    onClick={() => context.removeArt(element)}
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                );
+              }}
+            </DataContext.Consumer>
           )}
           <Paper className={classes.paper}>
             <NavLink to={'/hl_storefront/works/' + element.title}>

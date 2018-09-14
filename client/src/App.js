@@ -9,7 +9,7 @@ import AppStorefront from './AppStorefront';
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
 
-const Context = React.createContext();
+export const DataContext = React.createContext();
 
 const theme = createMuiTheme({
   palette: {
@@ -60,6 +60,10 @@ const RemoveArtMutation = gql`
   }
 `;
 class App extends Component {
+  state = {
+    updateArt: art => this.updateArt(art),
+    removeArt: art => this.removeArt(art)
+  };
   updateArt = async (art, input) => {
     await this.props.updateArt({
       variables: {
@@ -95,9 +99,7 @@ class App extends Component {
       );
     }
     return (
-      <Context.Provider
-        value={{ updateArt: this.updateArt, removeArt: this.removeArt }}
-      >
+      <DataContext.Provider value={this.state}>
         <MuiThemeProvider theme={theme}>
           <div className="App">
             {/* Storefront and Router */}
@@ -110,7 +112,7 @@ class App extends Component {
             <div className="background" />
           </div>
         </MuiThemeProvider>
-      </Context.Provider>
+      </DataContext.Provider>
     );
   }
 }
