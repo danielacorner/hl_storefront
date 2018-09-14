@@ -10,7 +10,7 @@ import About from './components/about/About';
 import Contact from './components/contact/Contact';
 import Collections from './components/collections/Collections';
 import Collection from './components/collections/Collection';
-import Artworks from './components/artworks/Artworks';
+import MasonryGallery from './components/artworks/MasonryGallery';
 import Error from './components/page-not-found/Error';
 import Header from './components/navbar/Header';
 import ShoppingCart from './components/shopping-cart/ShoppingCart';
@@ -79,9 +79,9 @@ class AppStorefront extends Component {
 
   render() {
     const { currentPath, shoppingCartContents } = this.state;
-    const { allArt } = this.props;
+    const { allArt, onRemove } = this.props;
     return (
-      // !handleroutechange unused
+      // ?handleroutechange unused
       <BrowserRouter onChange={this.handleRouteChange}>
         <div>
           <Route path="/hl_storefront/" component={Header} exact />
@@ -100,7 +100,11 @@ class AppStorefront extends Component {
               render={props => {
                 return (
                   <React.Fragment>
-                    <Artworks allArt={allArt} />
+                    <MasonryGallery
+                      elements={allArt}
+                      admin={true}
+                      onRemove={art => onRemove(art)}
+                    />
                     <Admin {...props} />
                   </React.Fragment>
                 );
@@ -111,7 +115,7 @@ class AppStorefront extends Component {
             <Route
               path="/hl_storefront/"
               render={() => {
-                return <Artworks allArt={allArt} />;
+                return <MasonryGallery elements={allArt} admin={false} />;
               }}
               exact
             />

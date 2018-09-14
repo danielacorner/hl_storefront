@@ -4,6 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { NavLink } from 'react-router-dom';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 // https://masonry.desandro.com/options.html
 const masonryOptions = {
@@ -46,21 +48,44 @@ const styles = theme => ({
   },
   myGallery: {
     margin: 'auto'
+  },
+  closeButton: {
+    backgroundColor: 'rgba(228, 0, 0, 0.3)',
+    position: 'absolute',
+    zIndex: '1',
+    margin: '-13px',
+    '&:hover': {
+      backgroundColor: 'rgba(228, 0, 0, 0.7)',
+      color: 'black',
+      transform: 'scale(1.15)'
+    }
   }
 });
+const Context = React.createContext();
 
 const imagesLoadedOptions = { background: '.my-bg-image-el' };
 
 class MasonryGallery extends React.Component {
   render() {
-    const { classes, elements } = this.props;
-    console.log(elements);
+    const { classes, elements, admin, onRemove } = this.props;
     const childElements = elements.map(element => {
       return (
         <li
           key={`${element.id}-art-item`}
           className={classes.root + ' grid-item'}
         >
+          {admin && (
+            <Context.Consumer>
+              {context => (
+                <IconButton
+                  className={classes.closeButton}
+                  onClick={() => context.removeArt(element)}
+                >
+                  <CloseIcon />
+                </IconButton>
+              )}
+            </Context.Consumer>
+          )}
           <Paper className={classes.paper}>
             <NavLink to={'/hl_storefront/works/' + element.title}>
               <img src={element.imgUrl} alt={element.title} />

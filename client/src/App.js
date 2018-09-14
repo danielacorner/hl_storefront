@@ -9,6 +9,8 @@ import AppStorefront from './AppStorefront';
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
 
+const Context = React.createContext();
+
 const theme = createMuiTheme({
   palette: {
     primary: { main: '#7986cb' },
@@ -48,19 +50,33 @@ const CreateArtMutation = gql`
   }
 `;
 const UpdateArtMutation = gql`
-  {
-    updateArt(
-      id: "5b9c1263ee06e788b4def199"
-      input: {
-        title: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!"
-        price: 10000
-      }
-    )
+  mutation($id: ID!, $input: ArtInput!) {
+    updateArt(id: $id, input: $input)
+  }
+`;
+const RemoveArtMutation = gql`
+  mutation($id: ID!) {
+    removeArt(id: "5b9c1263ee06e788b4def199")
   }
 `;
 class App extends Component {
+  updateArt = async (art, input) => {
+    await this.props.updateArt({
+      variables: {
+        id: art.id,
+        input: input
+      }
+    });
+  };
+  removeArt = async art => {
+    await this.props.removeArt({
+      variables: {
+        id: art.id
+      }
+    });
+  };
+
   render() {
-    console.log(this.props);
     const {
       data: { loading, allArt }
     } = this.props;
@@ -79,20 +95,29 @@ class App extends Component {
       );
     }
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className="App">
-          {/* Storefront and Router */}
-          <AppStorefront allArt={allArt} />
+      <Context.Provider
+        value={{ updateArt: this.updateArt, removeArt: this.removeArt }}
+      >
+        <MuiThemeProvider theme={theme}>
+          <div className="App">
+            {/* Storefront and Router */}
+            <AppStorefront
+              allArt={allArt}
+              onRemove={art => this.removeArt(art)}
+            />
 
-          {/* Background */}
-          <div className="background" />
-        </div>
-      </MuiThemeProvider>
+            {/* Background */}
+            <div className="background" />
+          </div>
+        </MuiThemeProvider>
+      </Context.Provider>
     );
   }
 }
 
 export default compose(
   // withStyles(styles),
+  graphql(UpdateArtMutation, { name: 'updateArt' }),
+  graphql(RemoveArtMutation, { name: 'removeArt' }),
   graphql(ArtQuery)
 )(App);
