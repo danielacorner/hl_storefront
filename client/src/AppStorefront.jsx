@@ -79,7 +79,7 @@ class AppStorefront extends Component {
 
   render() {
     const { currentPath, shoppingCartContents } = this.state;
-
+    const { allArt } = this.props;
     return (
       // !handleroutechange unused
       <BrowserRouter onChange={this.handleRouteChange}>
@@ -100,7 +100,7 @@ class AppStorefront extends Component {
               render={props => {
                 return (
                   <React.Fragment>
-                    <Artworks />
+                    <Artworks allArt={allArt} />
                     <Admin {...props} />
                   </React.Fragment>
                 );
@@ -108,7 +108,13 @@ class AppStorefront extends Component {
               exact
             />
 
-            <Route path="/hl_storefront/" component={Artworks} exact />
+            <Route
+              path="/hl_storefront/"
+              render={props => {
+                return <Artworks allArt={allArt} />;
+              }}
+              exact
+            />
             <Route path="/hl_storefront/about" component={About} exact />
             <Route path="/hl_storefront/contact" component={Contact} exact />
             <Route

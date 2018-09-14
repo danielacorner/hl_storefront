@@ -53,8 +53,8 @@ const imagesLoadedOptions = { background: '.my-bg-image-el' };
 
 class Gallery extends React.Component {
   render() {
-    const { classes } = this.props;
-    const childElements = this.props.elements.map(element => {
+    const { classes, elements } = this.props;
+    const childElements = elements.map(element => {
       return (
         <li
           key={JSON.stringify(element)}
