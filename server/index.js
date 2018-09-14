@@ -35,6 +35,7 @@ const typeDefs = `
       price: Float, 
       avail: Boolean
       ): Boolean
+    removeArt(id: ID!): Boolean
   }
 `;
 
@@ -65,6 +66,10 @@ const resolvers = {
       } else {
         await Art.findOneAndUpdate(id, { title, caption, price, avail });
       }
+      return true;
+    },
+    removeArt: async (_, { id }) => {
+      await Art.findOneAndRemove(id);
       return true;
     }
   }
