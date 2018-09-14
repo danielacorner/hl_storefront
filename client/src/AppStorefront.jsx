@@ -110,7 +110,7 @@ class AppStorefront extends Component {
 
             <Route
               path="/hl_storefront/"
-              render={props => {
+              render={() => {
                 return <Artworks allArt={allArt} />;
               }}
               exact

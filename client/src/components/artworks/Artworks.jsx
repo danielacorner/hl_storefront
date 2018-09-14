@@ -1,11 +1,12 @@
 import React from 'react';
 import artworks from '../../images/hl_artworks';
-import Gallery from './Masonry';
+import MasonryGallery from './MasonryGallery';
 
-const Artworks = () => {
-  const { allArt } = this.props;
+const Artworks = props => {
+  const { allArt } = props;
+  console.log(allArt);
   // return <Gallery elements={artworks} />;
-  return <Gallery elements={allArt} />;
+  return <MasonryGallery elements={allArt} />;
 };
 
 export default Artworks;

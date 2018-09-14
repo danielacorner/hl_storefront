@@ -6,6 +6,7 @@ mongoose.connect('mongodb://localhost/test4');
 const Art = mongoose.model('Art', {
   title: String,
   imgUrl: String,
+  dimensions: [Number],
   caption: String,
   price: Number,
   avail: Boolean
@@ -16,29 +17,29 @@ const typeDefs = `
     id: ID!
     title: String!
     imgUrl: String!
+    dimensions: [Float]
     caption: String
     price: Float
     avail: Boolean!
   }
+
+  input ArtInput {
+    title: String
+    imgUrl: String
+    dimensions: [Float]
+    caption: String
+    price: Float
+    avail: Boolean
+  }
+
   type Query {
     allArt: [Art]
     art(id: ID!): Art
   }
+
   type Mutation {
-    createArt(
-      title: String!, 
-      imgUrl: String!,
-      caption: String, 
-      price: Float
-      ): Art
-    updateArt(
-      id: ID!, 
-      title: String, 
-      imgUrl: String,
-      caption: String, 
-      price: Float, 
-      avail: Boolean
-      ): Boolean
+    createArt(input: ArtInput): Art
+    updateArt(id: ID!, input: ArtInput): Boolean
     removeArt(id: ID!): Boolean
     removeAllArt: Boolean
   }
@@ -50,33 +51,18 @@ const resolvers = {
     art: id => Art.findOne({ id: id })
   },
   Mutation: {
-    createArt: async (_, { title, imgUrl, caption, price }) => {
+    createArt: async (_, { input }) => {
       // optional args
-      caption = caption || ''; // if no value, set to falsy
-      price = price || 0;
-      const art = new Art({ title, imgUrl, caption, price, avail: true });
+      input.caption = input.caption || ''; // if no value, set to falsy
+      input.price = input.price || 0;
+      if (input.avail == undefined) input.avail = true;
+      const art = new Art(input);
       await art.save();
       return art;
     },
-    updateArt: async (
-      _,
-      // https://coursework.vschool.io/mongoose-crud/
-      // the change to be made. Mongoose will smartly combine your existing
-      // document with this change, which allows for partial updates too
-      { id, title, imgUrl, caption, price, avail }
-    ) => {
-      if (avail == undefined) {
-        // if null or undefined don't return the availability
-        await Art.findOneAndUpdate(id, { title, imgUrl, caption, price });
-      } else {
-        await Art.findOneAndUpdate(id, {
-          title,
-          imgUrl,
-          caption,
-          price,
-          avail
-        });
-      }
+    updateArt: async (_, { id, input }) => {
+      // if null or undefined don't update them
+      await Art.findOneAndUpdate(id, input);
       return true;
     },
     removeArt: async (_, { id }) => {

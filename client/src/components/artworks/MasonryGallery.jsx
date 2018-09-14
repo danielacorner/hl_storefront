@@ -51,9 +51,10 @@ const styles = theme => ({
 
 const imagesLoadedOptions = { background: '.my-bg-image-el' };
 
-class Gallery extends React.Component {
+class MasonryGallery extends React.Component {
   render() {
     const { classes, elements } = this.props;
+    console.log(elements);
     const childElements = elements.map(element => {
       return (
         <li
@@ -62,12 +63,12 @@ class Gallery extends React.Component {
         >
           <Paper className={classes.paper}>
             <NavLink to={'/hl_storefront/works/' + element.title}>
-              <img src={element.image} alt={element.title} />
+              <img src={element.imgUrl} alt={element.title} />
               <Typography variant="subheading" align="left">
                 {element.title}
               </Typography>
               <Typography variant="caption" align="left">
-                {element.typeDimensions}
+                {element.dimensions}
               </Typography>
               <Typography align="right">{element.price}</Typography>
             </NavLink>
@@ -92,4 +93,4 @@ class Gallery extends React.Component {
   }
 }
 
-export default withStyles(styles)(Gallery);
+export default withStyles(styles)(MasonryGallery);

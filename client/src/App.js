@@ -18,13 +18,29 @@ const ArtQuery = gql`
     allArt {
       id
       title
+      imgUrl
+      dimensions
       caption
       price
       avail
     }
   }
 `;
-
+const RemoveAllArtMutation = gql`
+  {
+    removeAllArt
+  }
+`;
+const CreateArtMutation = gql`
+  {
+    createArt(
+      title: "Correlation 1"
+      imgUrl: "https://picsum.photos/250/250/?random"
+    ) {
+      title
+    }
+  }
+`;
 class App extends Component {
   render() {
     console.log(this.props);
