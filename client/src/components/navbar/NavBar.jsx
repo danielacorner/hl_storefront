@@ -82,6 +82,11 @@ class MenuAppBar extends React.Component {
   componentWillMount = () => {
     document.addEventListener('mousedown', this.handleClick, false);
     window.addEventListener('scroll', this.fixNav);
+    // fix nav on non-main pages
+    const mainPage = !!document.querySelector('.App-title');
+    if (!mainPage) {
+      document.body.classList.add('fixed-avatar');
+    }
   };
   componentWillUnount = () => {
     document.removeEventListener('mousedown', this.handleClick, false);
@@ -103,7 +108,6 @@ class MenuAppBar extends React.Component {
     const { topOfNav } = this.state;
     // fix the avatar when scrolled just above its top
     const topOfAvatar = topOfNav - 160;
-    console.log(window.scrollY >= topOfAvatar);
     if (window.scrollY >= topOfAvatar) {
       document.body.classList.add('fixed-avatar');
     } else {
@@ -116,8 +120,8 @@ class MenuAppBar extends React.Component {
         document.querySelector('#navbar').offsetHeight + 'px';
       document.body.classList.add('fixed-nav');
     } else {
-      // only unfix nav if on main page
-      if (document.querySelector('.App-title')) {
+      const mainPage = !!document.querySelector('.App-title');
+      if (mainPage) {
         // main page
         document.body.style.paddingTop = 0;
         // unfix the navbar

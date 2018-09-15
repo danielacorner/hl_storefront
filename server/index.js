@@ -40,7 +40,7 @@ const typeDefs = `
 
   type Mutation {
     createArt(input: ArtInput!): Art
-    updateArt(id: ID!, input: ArtInput): Boolean
+    updateArt(id: ID!, input: ArtInput): Art
     removeArt(id: ID!): Boolean
     removeAllArt: Boolean
   }

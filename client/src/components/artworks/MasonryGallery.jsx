@@ -69,7 +69,6 @@ const imagesLoadedOptions = { background: '.my-bg-image-el' };
 class MasonryGallery extends React.Component {
   render() {
     const { classes, elements, admin } = this.props;
-    console.log(this.props);
     const childElements = elements.map(element => {
       return (
         <li
@@ -79,7 +78,6 @@ class MasonryGallery extends React.Component {
           {admin && (
             <DataContext.Consumer>
               {context => {
-                console.log('context', context);
                 return (
                   <IconButton
                     className={classes.closeButton}

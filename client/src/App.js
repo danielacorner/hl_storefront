@@ -58,7 +58,15 @@ const CreateArtMutation = gql`
 `;
 const UpdateArtMutation = gql`
   mutation($id: ID!, $input: ArtInput!) {
-    updateArt(id: $id, input: $input)
+    updateArt(id: $id, input: $input) {
+      id
+      title
+      imgUrl
+      dimensions
+      caption
+      price
+      avail
+    }
   }
 `;
 
@@ -69,10 +77,25 @@ class App extends Component {
     updateArt: (art, input) => this.updateArt(art, input),
     removeArt: art => this.removeArt(art)
   };
+  createArtNoUpdate = async input => {
+    await this.props.createArt({
+      variables: {
+        input: input
+      }
+    });
+  };
   createArt = async input => {
     await this.props.createArt({
       variables: {
         input: input
+      },
+      update: (store, { data: { createArt } }) => {
+        // Read the data from our cache for this query (createArt returns Art)
+        const data = store.readQuery({ query: ArtQuery });
+        // Update our item from the mutation, then return the data.
+        data.allArt.unshift(createArt);
+        // Write our data back to the cache.
+        store.writeQuery({ query: ArtQuery, data });
       }
     });
   };
@@ -81,13 +104,45 @@ class App extends Component {
       variables: {
         id: art.id,
         input: input
+      },
+      update: (store, { data: { updateArt } }) => {
+        // Read the data from our cache for this query (updateArt returns Art)
+        const data = store.readQuery({ query: ArtQuery });
+        // Update our item from the mutation, then return the data.
+        data.allArt = data.allArt.map(
+          x =>
+            x.id === art.id
+              ? {
+                  ...art, // any unmodified variables
+                  title: updateArt.title,
+                  imgUrl: updateArt.imgUrl,
+                  dimensions: updateArt.dimensions,
+                  caption: updateArt.caption,
+                  price: updateArt.price,
+                  avail: updateArt.avail
+                }
+              : x
+        );
+        // Write our data back to the cache.
+        store.writeQuery({ query: ArtQuery, data });
       }
     });
   };
   removeArt = async art => {
+    if (!window.confirm('Are you sure you want to delete this item?')) {
+      return;
+    }
     await this.props.removeArt({
       variables: {
         id: art.id
+      },
+      update: store => {
+        // Read the data from our cache for this query
+        const data = store.readQuery({ query: ArtQuery });
+        // Remove our item from the mutation, then return the data.
+        data.allArt = data.allArt.filter(x => x.id !== art.id);
+        // Write our data back to the cache.
+        store.writeQuery({ query: ArtQuery, data });
       }
     });
   };
@@ -106,7 +161,7 @@ class App extends Component {
             height: '100vh'
           }}
         >
-          <CircularProgress size={'10vw'} />
+          <CircularProgress size={'8vw'} />
         </div>
       );
     }
@@ -125,7 +180,7 @@ class App extends Component {
         price: art.price ? Number(art.price.replace(/[^0-9.-]+/g, '')) : 0,
         avail: true
       };
-      await this.createArt(input);
+      await this.createArtNoUpdate(input);
     });
     console.log('removed and added all', allArt);
     console.groupEnd();
