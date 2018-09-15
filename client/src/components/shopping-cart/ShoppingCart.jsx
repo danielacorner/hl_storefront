@@ -153,7 +153,7 @@ export default class ShoppingCart extends Component {
             Subtotal
             <span style={{ position: 'absolute', right: '0' }}>
               {'$' +
-                JSON.parse(localStorage.getItem('cart'))
+                JSON.parse(localStorage.getItem('hyeranart-cart'))
                   .map(art => {
                     return +art.price.replace(',', '').substring(1); // convert '$2,160' to 2160
                   })

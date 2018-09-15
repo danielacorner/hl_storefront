@@ -13,10 +13,16 @@ const Art = mongoose.model('Art', {
 });
 
 const typeDefs = `
+
+  type Query {
+    allArt: [Art]
+    art(id: ID!): Art
+  }
+
   type Art {
     id: ID!
-    title: String!
-    imgUrl: String!
+    title: String
+    imgUrl: String
     dimensions: [Float]
     caption: String
     price: Float
@@ -32,13 +38,8 @@ const typeDefs = `
     avail: Boolean
   }
 
-  type Query {
-    allArt: [Art]
-    art(id: ID!): Art
-  }
-
   type Mutation {
-    createArt(input: ArtInput): Art
+    createArt(input: ArtInput!): Art
     updateArt(id: ID!, input: ArtInput): Boolean
     removeArt(id: ID!): Boolean
     removeAllArt: Boolean
@@ -72,7 +73,7 @@ const resolvers = {
       return true;
     },
     removeAllArt: async () => {
-      await Art.deleteMany();
+      await Art.find().remove();
       return true;
     }
   }

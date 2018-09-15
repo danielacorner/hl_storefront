@@ -136,7 +136,7 @@ class Details extends React.Component {
     }
   };
   alreadyInCart = () => {
-    const cart = JSON.parse(localStorage.getItem('cart'));
+    const cart = JSON.parse(localStorage.getItem('hyeranart-cart'));
     // is the item already in your cart? (assuming all quantity = 1)
     return cart.some(item => item.title === this.state.thisArt.title);
   };

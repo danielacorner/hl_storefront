@@ -69,6 +69,7 @@ const imagesLoadedOptions = { background: '.my-bg-image-el' };
 class MasonryGallery extends React.Component {
   render() {
     const { classes, elements, admin } = this.props;
+    console.log(this.props);
     const childElements = elements.map(element => {
       return (
         <li

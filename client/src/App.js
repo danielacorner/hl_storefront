@@ -21,7 +21,7 @@ const theme = createMuiTheme({
 });
 
 const ArtQuery = gql`
-  {
+  query {
     allArt {
       id
       title
@@ -34,21 +34,26 @@ const ArtQuery = gql`
   }
 `;
 const RemoveAllArtMutation = gql`
-  {
+  mutation {
     removeAllArt
   }
 `;
+const RemoveArtMutation = gql`
+  mutation($id: ID!) {
+    removeArt(id: $id)
+  }
+`;
 const CreateArtMutation = gql`
-  {
-    createArt(
-      input: {
-        title: "Correlation 1"
-        imgUrl: "https://picsum.photos/250/250/?random"
-        dimensions: [1, 2]
-        caption: "caption!"
-        price: null
-      }
-    )
+  mutation($input: ArtInput!) {
+    createArt(input: $input) {
+      id
+      title
+      imgUrl
+      dimensions
+      caption
+      price
+      avail
+    }
   }
 `;
 const UpdateArtMutation = gql`
@@ -56,15 +61,20 @@ const UpdateArtMutation = gql`
     updateArt(id: $id, input: $input)
   }
 `;
-const RemoveArtMutation = gql`
-  mutation($id: ID!) {
-    removeArt(id: "5b9c1263ee06e788b4def199")
-  }
-`;
+
 class App extends Component {
   state = {
-    updateArt: art => this.updateArt(art),
+    allArt: null,
+    createArt: art => this.createArt(art),
+    updateArt: (art, input) => this.updateArt(art, input),
     removeArt: art => this.removeArt(art)
+  };
+  createArt = async input => {
+    await this.props.createArt({
+      variables: {
+        input: input
+      }
+    });
   };
   updateArt = async (art, input) => {
     await this.props.updateArt({
@@ -81,26 +91,8 @@ class App extends Component {
       }
     });
   };
-  // removeAllArt = () => {
-  //   this.props.removeAllArt();
-  // };
 
   render() {
-    // !temporary: remove all art, load all art from JSON
-    this.props.removeAllArt;
-    // this.removeAllArt;
-    artworks.forEach(art => {
-      const input = {
-        title: art.title,
-        imgUrl: art.image,
-        dimensions: [art.height, art.width],
-        caption: art.caption,
-        price: Number(art.price.replace(/[^0-9.-]+/g, '')),
-        avail: true
-      };
-      console.log(input);
-    });
-
     const {
       data: { loading, allArt }
     } = this.props;
@@ -114,16 +106,36 @@ class App extends Component {
             height: '100vh'
           }}
         >
-          <CircularProgress size={'20vw'} />
+          <CircularProgress size={'10vw'} />
         </div>
       );
     }
+
+    // !for development: remove all art
+    console.group();
+    console.log(this.props);
+    this.props.removeAllArt();
+    // !for development: add all art from JSON data
+    artworks.forEach(async art => {
+      const input = {
+        title: art.title,
+        imgUrl: art.image,
+        dimensions: [art.height, art.width],
+        caption: art.caption,
+        price: art.price ? Number(art.price.replace(/[^0-9.-]+/g, '')) : 0,
+        avail: true
+      };
+      await this.createArt(input);
+    });
+    console.log('removed and added all', allArt);
+    console.groupEnd();
+
     return (
-      <DataContext.Provider value={this.state}>
+      <DataContext.Provider value={{ ...this.state, allArt: allArt }}>
         <MuiThemeProvider theme={theme}>
           <div className="App">
             {/* Storefront and Router */}
-            <AppStorefront allArt={allArt} />
+            <AppStorefront />
 
             {/* Background */}
             <div className="background" />
@@ -136,6 +148,7 @@ class App extends Component {
 
 export default compose(
   // withStyles(styles),
+  graphql(CreateArtMutation, { name: 'createArt' }),
   graphql(UpdateArtMutation, { name: 'updateArt' }),
   graphql(RemoveArtMutation, { name: 'removeArt' }),
   graphql(RemoveAllArtMutation, { name: 'removeAllArt' }),

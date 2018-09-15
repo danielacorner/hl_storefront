@@ -466,6 +466,7 @@ const artworks = [
       '\n                <img src="//assets.saatchiart.com/saatchi/189576/art/4502109/3571949-GINUQFCM-6.jpg" data-sku="P1-U189576-A4168600" alt="Saatchi Art Artist Hyeran Lee; Painting, “April” #art" itemprop="contentURL">\n            ',
     image:
       'https://assets.saatchiart.com/saatchi/189576/art/4502109/3571949-GINUQFCM-6.jpg',
+    title: 'Let it flow',
     title_url:
       'https://www.saatchiart.com/art/Painting-April/189576/4168600/view',
     typeDimensions: 'Painting, 24 H x 18 W x 0.8 in',

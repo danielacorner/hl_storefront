@@ -17,9 +17,12 @@ import ShoppingCart from './components/shopping-cart/ShoppingCart';
 import Checkout from './components/checkout/Checkout';
 import Admin from './components/admin/Admin';
 
+import { DataContext } from './App';
+
 class AppStorefront extends Component {
   state = {
-    shoppingCartContents: JSON.parse(localStorage.getItem('cart')) || [],
+    shoppingCartContents:
+      JSON.parse(localStorage.getItem('hyeranart-cart')) || [],
     currentPath: '/hl_storefront/'
   };
 
@@ -31,7 +34,7 @@ class AppStorefront extends Component {
       shoppingCartContents: [...this.state.shoppingCartContents, art]
     });
     localStorage.setItem(
-      'cart',
+      'hyeranart-cart',
       JSON.stringify([...this.state.shoppingCartContents, art])
     );
   };
@@ -42,12 +45,12 @@ class AppStorefront extends Component {
     this.setState({
       shoppingCartContents: newCart
     });
-    localStorage.setItem('cart', JSON.stringify(newCart));
+    localStorage.setItem('hyeranart-cart', JSON.stringify(newCart));
   };
   handleEmptyCart = () => {
     if (window.confirm('Are you sure?')) {
       this.setState({ shoppingCartContents: [] });
-      localStorage.setItem('cart', JSON.stringify([]));
+      localStorage.setItem('hyeranart-cart', JSON.stringify([]));
     }
   };
 
@@ -79,7 +82,6 @@ class AppStorefront extends Component {
 
   render() {
     const { currentPath, shoppingCartContents } = this.state;
-    const { allArt } = this.props;
     return (
       // ?handleroutechange unused
       <BrowserRouter onChange={this.handleRouteChange}>
@@ -99,10 +101,21 @@ class AppStorefront extends Component {
               path="/hl_storefront/admin"
               render={props => {
                 return (
-                  <React.Fragment>
-                    <MasonryGallery elements={allArt} admin={true} />
-                    <Admin {...props} />
-                  </React.Fragment>
+                  <DataContext.Consumer>
+                    {context => {
+                      console.log('context', context);
+                      return (
+                        <React.Fragment>
+                          <MasonryGallery
+                            // elements={{ id: 'vbeb', title: 'hey' }}
+                            elements={context.allArt}
+                            admin={true}
+                          />
+                          <Admin {...props} />
+                        </React.Fragment>
+                      );
+                    }}
+                  </DataContext.Consumer>
                 );
               }}
               exact
@@ -111,7 +124,20 @@ class AppStorefront extends Component {
             <Route
               path="/hl_storefront/"
               render={() => {
-                return <MasonryGallery elements={allArt} admin={false} />;
+                return (
+                  <DataContext.Consumer>
+                    {context => {
+                      console.log('context', context);
+                      return (
+                        <MasonryGallery
+                          // elements={{ id: 'vbeb', title: 'hey' }}
+                          elements={context.allArt}
+                          admin={false}
+                        />
+                      );
+                    }}
+                  </DataContext.Consumer>
+                );
               }}
               exact
             />
