@@ -101,15 +101,28 @@ class MenuAppBar extends React.Component {
 
   fixNav = () => {
     const { topOfNav } = this.state;
+    // fix the avatar when scrolled just above its top
+    const topOfAvatar = topOfNav - 160;
+    console.log(window.scrollY >= topOfAvatar);
+    if (window.scrollY >= topOfAvatar) {
+      document.body.classList.add('fixed-avatar');
+    } else {
+      document.body.classList.remove('fixed-avatar');
+    }
+    // fix the navbar when scrolled past it
     if (window.scrollY >= topOfNav) {
+      // fix the navbar
       document.body.style.paddingTop =
         document.querySelector('#navbar').offsetHeight + 'px';
       document.body.classList.add('fixed-nav');
     } else {
-      // only remove fixed nav if on main page
+      // only unfix nav if on main page
       if (document.querySelector('.App-title')) {
+        // main page
         document.body.style.paddingTop = 0;
+        // unfix the navbar
         document.body.classList.remove('fixed-nav');
+        // document.body.classList.remove('fixed-avatar');
       }
     }
   };
