@@ -4,6 +4,8 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { createMuiTheme /*, withStyles */ } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import artworks from './images/hl_artworks';
+
 import AppStorefront from './AppStorefront';
 
 import gql from 'graphql-tag';
@@ -79,8 +81,26 @@ class App extends Component {
       }
     });
   };
+  // removeAllArt = () => {
+  //   this.props.removeAllArt();
+  // };
 
   render() {
+    // !temporary: remove all art, load all art from JSON
+    this.props.removeAllArt;
+    // this.removeAllArt;
+    artworks.forEach(art => {
+      const input = {
+        title: art.title,
+        imgUrl: art.image,
+        dimensions: [art.height, art.width],
+        caption: art.caption,
+        price: Number(art.price.replace(/[^0-9.-]+/g, '')),
+        avail: true
+      };
+      console.log(input);
+    });
+
     const {
       data: { loading, allArt }
     } = this.props;
@@ -103,10 +123,7 @@ class App extends Component {
         <MuiThemeProvider theme={theme}>
           <div className="App">
             {/* Storefront and Router */}
-            <AppStorefront
-              allArt={allArt}
-              onRemove={art => this.removeArt(art)}
-            />
+            <AppStorefront allArt={allArt} />
 
             {/* Background */}
             <div className="background" />
@@ -121,5 +138,6 @@ export default compose(
   // withStyles(styles),
   graphql(UpdateArtMutation, { name: 'updateArt' }),
   graphql(RemoveArtMutation, { name: 'removeArt' }),
+  graphql(RemoveAllArtMutation, { name: 'removeAllArt' }),
   graphql(ArtQuery)
 )(App);
