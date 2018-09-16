@@ -2,7 +2,7 @@ const { GraphQLServer } = require('graphql-yoga');
 const mongoose = require('mongoose');
 
 mongoose.connect(
-  'mongodb://admin:password123@ds159661.mlab.com:59661/heroku_gl9r1d3n',
+  'mongodb://admin:password123@ds139919.mlab.com:39919/hl_storefront_db',
   {
     useNewUrlParser: true
   }
