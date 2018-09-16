@@ -23,7 +23,9 @@ class NativeSelects extends React.Component {
   };
 
   handleChange = item => event => {
-    this.setState({ [item]: event.target.value });
+    this.setState({
+      [item]: event.target.value
+    });
   };
 
   render() {
@@ -50,9 +52,9 @@ class NativeSelects extends React.Component {
               <option
                 key={JSON.stringify(opt)}
                 style={{ color: 'black' }}
-                value={opt}
+                value={opt.id}
               >
-                {opt}
+                {opt.title}
               </option>
             );
           })}
@@ -62,6 +64,7 @@ class NativeSelects extends React.Component {
           variant="outlined"
           color="secondary"
           className={classes.button}
+          onClick={() => this.props.onSelectClick(this.state.item)}
         >
           {action}
         </Button>

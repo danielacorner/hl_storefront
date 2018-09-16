@@ -103,7 +103,6 @@ class AppStorefront extends Component {
                 return (
                   <DataContext.Consumer>
                     {context => {
-                      console.log('context', context);
                       return (
                         <React.Fragment>
                           <MasonryGallery
@@ -127,7 +126,6 @@ class AppStorefront extends Component {
                 return (
                   <DataContext.Consumer>
                     {context => {
-                      console.log('context', context);
                       return (
                         <MasonryGallery
                           // elements={{ id: 'vbeb', title: 'hey' }}

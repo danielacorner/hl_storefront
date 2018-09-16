@@ -58,15 +58,7 @@ const CreateArtMutation = gql`
 `;
 const UpdateArtMutation = gql`
   mutation($id: ID!, $input: ArtInput!) {
-    updateArt(id: $id, input: $input) {
-      id
-      title
-      imgUrl
-      dimensions
-      caption
-      price
-      avail
-    }
+    updateArt(id: $id, input: $input)
   }
 `;
 
@@ -74,7 +66,7 @@ class App extends Component {
   state = {
     allArt: null,
     createArt: art => this.createArt(art),
-    updateArt: (art, input) => this.updateArt(art, input),
+    updateArt: (id, input) => this.updateArt(id, input),
     removeArt: art => this.removeArt(art)
   };
   createArtNoUpdate = async input => {
@@ -100,29 +92,36 @@ class App extends Component {
     });
   };
   updateArt = async (art, input) => {
+    // console.log({ art, input }, this.props);
+    // const oldArt = this.props.data.allArt.find(a => a.id === art.id);
+    // console.log(oldArt);
+    // console.log(art);
+    // console.groupEnd();
     await this.props.updateArt({
       variables: {
         id: art.id,
         input: input
       },
-      update: (store, { data: { updateArt } }) => {
+      update: store => {
         // Read the data from our cache for this query (updateArt returns Art)
         const data = store.readQuery({ query: ArtQuery });
         // Update our item from the mutation, then return the data.
-        data.allArt = data.allArt.map(
-          x =>
-            x.id === art.id
-              ? {
-                  ...art, // any unmodified variables
-                  title: updateArt.title,
-                  imgUrl: updateArt.imgUrl,
-                  dimensions: updateArt.dimensions,
-                  caption: updateArt.caption,
-                  price: updateArt.price,
-                  avail: updateArt.avail
-                }
-              : x
-        );
+        data.allArt = data.allArt.map(x => {
+          // data.allArt = this.props.data.allArt.map(x => {
+          if (x.id === art.id) {
+            return {
+              ...art, // any unmodified variables
+              title: art.title,
+              imgUrl: art.imgUrl,
+              dimensions: art.dimensions,
+              caption: art.caption,
+              price: art.price,
+              avail: art.avail
+            };
+          } else {
+            return x;
+          }
+        });
         // Write our data back to the cache.
         store.writeQuery({ query: ArtQuery, data });
       }
@@ -168,7 +167,7 @@ class App extends Component {
 
     // !for development: remove all art
     console.group();
-    console.log(this.props);
+    console.log('props', this.props);
     this.props.removeAllArt();
     // !for development: add all art from JSON data
     artworks.forEach(async art => {
