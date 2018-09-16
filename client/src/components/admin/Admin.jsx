@@ -32,6 +32,7 @@ const styles = theme => ({
   },
   formFields: {
     display: 'grid',
+    gridGap: 10,
     gridTemplateRows: 'repeat(auto-fill, auto)',
     '& *': {
       color: 'white'
@@ -53,6 +54,9 @@ class Admin extends Component {
   openUpdateModal = (id, context) => {
     const itemToUpdate = context.allArt.find(a => a.id === id);
     this.setState({ modalItem: itemToUpdate, modalOpen: true });
+  };
+  openCreateModal = id => {
+    this.setState({ modalItem: { id: id }, modalOpen: true });
   };
 
   handleCloseModal = () => {
@@ -92,7 +96,6 @@ class Admin extends Component {
     const oldArt = context.allArt.find(a => a.id === newArt.id);
     delete newArt.id; // ArtInput does not accept field id
     delete newArt.__typename;
-    console.log({ oldArt, newArt });
     context.updateArt(oldArt, newArt);
   };
   // Remove Artwork
@@ -126,28 +129,28 @@ class Admin extends Component {
               <div className={classes.formFields}>
                 <h5 className={classes.panelTitle}>Edit Items</h5>
                 {/* Create */}
-                <TextField
-                  className={classes.textField}
-                  id="add-art"
-                  label="Add an item..."
-                  value={text}
-                  onChange={this.handleInputChange}
-                  onKeyDown={this.handleInputKeyDown}
-                  fullWidth
-                />
+                <br />
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  className={classes.btnUpdate}
+                  onClick={this.openCreateModal}
+                >
+                  Add an item...
+                </Button>
                 {/* Update */}
                 <Select
                   options={context.allArt}
                   target="an item"
                   action="Update"
-                  onSelectClick={id => this.openUpdateModal(id, context)}
+                  onSubmit={id => this.openUpdateModal(id, context)}
                 />
                 {/* Delete */}
                 <Select
                   options={context.allArt}
                   target="an item"
                   action="Delete"
-                  onDelete={id => this.handleDelete(id, context)}
+                  onSubmit={id => this.handleDelete(id, context)}
                 />
 
                 <br />
@@ -161,6 +164,7 @@ class Admin extends Component {
                 <br />
 
                 <h5 className={classes.panelTitle}>Edit Collections</h5>
+                <br />
                 <TextField
                   className={classes.textField}
                   id="add-collection"
@@ -218,13 +222,15 @@ class Admin extends Component {
                       style={{ margin: 'auto' }}
                       id="modal-title"
                     >
-                      Updating: {modalItem.title}
+                      {modalItem.title
+                        ? `Updating: ${modalItem.title}`
+                        : `Create New Item`}
                     </Typography>
                     <TextField
                       className={classes.textField}
                       id="update-title"
                       data-field="title"
-                      label="title"
+                      label="Title"
                       value={modalItem.title}
                       onChange={this.handleInputChange}
                       fullWidth
@@ -238,22 +244,33 @@ class Admin extends Component {
                       onChange={this.handleInputChange}
                       fullWidth
                     />
-                    <TextField
-                      className={classes.textField}
-                      id="update-width"
-                      label="Width"
-                      data-field="width"
-                      value={modalItem.dimensions[0]}
-                      onChange={this.handleInputChange}
-                    />
-                    <TextField
-                      className={classes.textField}
-                      id="update-height"
-                      label="Height"
-                      data-field="height"
-                      value={modalItem.dimensions[1]}
-                      onChange={this.handleInputChange}
-                    />
+                    <div
+                      style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'auto auto'
+                      }}
+                    >
+                      <TextField
+                        className={classes.textField}
+                        id="update-width"
+                        label="Width (inches)"
+                        data-field="width"
+                        value={
+                          modalItem.dimensions ? modalItem.dimensions[0] : ''
+                        }
+                        onChange={this.handleInputChange}
+                      />
+                      <TextField
+                        className={classes.textField}
+                        id="update-height"
+                        label="Height (inches)"
+                        data-field="height"
+                        value={
+                          modalItem.dimensions ? modalItem.dimensions[1] : ''
+                        }
+                        onChange={this.handleInputChange}
+                      />
+                    </div>
                     <TextField
                       className={classes.textField}
                       id="update-caption"
@@ -270,7 +287,7 @@ class Admin extends Component {
                     <TextField
                       className={classes.textField}
                       id="update-price"
-                      label="Price"
+                      label="Price (USD)"
                       data-field="price"
                       value={modalItem.price}
                       onChange={this.handleInputChange}
@@ -287,15 +304,13 @@ class Admin extends Component {
                       <Button
                         variant="outlined"
                         color="primary"
-                        className={classes.btnUpdate}
                         onClick={() => this.handleUpdateSubmit(context)}
                       >
-                        Update
+                        {modalItem.id ? `Update` : `Create`}
                       </Button>
                       <Button
                         variant="outlined"
                         color="secondary"
-                        className={classes.btnCancel}
                         onClick={this.handleCloseModal}
                       >
                         Cancel

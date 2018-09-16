@@ -64,7 +64,7 @@ class NativeSelects extends React.Component {
           variant="outlined"
           color="secondary"
           className={classes.button}
-          onClick={() => this.props.onSelectClick(this.state.item)}
+          onClick={() => this.props.onSubmit(this.state.item)}
         >
           {action}
         </Button>
