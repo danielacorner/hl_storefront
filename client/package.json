@@ -1,6 +1,10 @@
 {
   "name": "hl_storefront",
   "version": "0.1.0",
+  "engines": {
+    "node": "8.9.4",
+    "yarn": "1.7.0"
+  },
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.0.2",

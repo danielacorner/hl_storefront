@@ -1,7 +1,12 @@
 const { GraphQLServer } = require('graphql-yoga');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/test4');
+mongoose.connect(
+  'mongodb://admin:password123@ds159661.mlab.com:59661/heroku_gl9r1d3n',
+  {
+    useNewUrlParser: true
+  }
+);
 
 const Art = mongoose.model('Art', {
   title: String,
@@ -86,5 +91,5 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 db.once('open', function() {
   // we're connected!
-  server.start(() => console.log('Server is running on localhost:4000'));
+  server.start().then(({ url }) => console.log(`Server is running...`));
 });
